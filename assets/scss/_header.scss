@@ -1,0 +1,26 @@
+.hero-header {
+    &::after {
+        content: '';
+        @apply absolute top-0 z-[-1] opacity-50 h-full w-full bg-black;
+    }
+
+    nav {
+        color: white;
+    }
+
+    .level_0 {
+        @apply hidden;
+    }
+
+    .level_0.header-active {
+        @apply grid fixed h-full w-screen bg-white top-0 left-0 p-5;
+    }
+
+    .marquee-container {
+        @apply flex items-center min-h-20;
+        .marquee span {
+            font-family: Chewy;
+            font-size: 4rem;
+        }
+    }
+}

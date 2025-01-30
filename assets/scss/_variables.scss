@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'BarlowCondensed', sans-serif;
+    color: var(--black-cinetech);
+}
+
+html {
+    font-size: clamp(12px, calc(16 * 100vw / 1440), 1rem);
+    background-color: var(--light-bg);
+}
+
+:root {
+    --green-ascent: var(--primary-color, #344e41);
+    --green-light-ascent: var(--secondary-color, #ccd5ae);
+    --black-ascent: var(--light-white-color, #27292F);
+    --grey-ascent: var(--white-color, #969191);
+    --grey-light-ascent: #DEDEDE;
+    --light-bg: #F5F6F8;
+    --white: #FFFFFF;
+}

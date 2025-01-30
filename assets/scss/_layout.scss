@@ -1,0 +1,15 @@
+.container {
+    @apply px-5 lg:px-10 mx-auto max-w-[1600px];
+}
+
+.container-full {
+    @apply mx-auto max-w-[1600px];
+}
+
+.layout-grid {
+    @apply grid grid-cols-6 md:grid-cols-12 gap-5;
+}
+
+section {
+    @apply my-20 md:my-24;
+}

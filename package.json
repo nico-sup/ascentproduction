@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "dev-ssl": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "stackblitz": "npm run dev"
+  },
+  "stackblitz": {
+    "startCommand": "npm run stackblitz"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "aos": "^2.3.4",
+    "gsap": "^3.12.5",
+    "nuxt-aos": "^1.2.5",
+    "nuxt-lazy-load": "^3.0.4",
+    "nuxt-swiper": "^1.2.2",
+    "remove": "^0.1.5",
+    "sass": "^1.71.1",
+    "scrolltrigger": "^1.0.1",
+    "swiper": "^11.0.7",
+    "vue": "^3.4.21",
+    "vue-animate-onscroll": "^1.0.8",
+    "vue-gallery": "^2.0.5",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "dotenv": "^16.4.5",
+    "@storyblok/nuxt": "^6.0.4",
+    "postcss-import": "^16.0.1",
+    "nuxt": "^3.10.2"
+  }
+}

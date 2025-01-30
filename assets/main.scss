@@ -1,0 +1,14 @@
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
+
+/* ----- SETTINGS -----*/
+@use 'scss/variables';
+@use 'scss/font';
+@use 'scss/layout';
+
+/* ----- COMPONENTS -----*/
+@use 'scss/header';
+@use 'scss/typos';
+@use 'scss/split';
