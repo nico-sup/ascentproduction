@@ -1,0 +1,12 @@
+.services {
+    &:last-of-type {
+        @apply border-b border-b-green-ascent;
+    }
+    &:hover {
+        @apply bg-green-ascent;
+        div {
+            @apply bg-white rounded-[5rem] ;
+             transition: border-radius 0.5s;
+        }
+    }
+}
