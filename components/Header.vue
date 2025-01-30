@@ -5,25 +5,27 @@
     </video>
 
     <nav class="flex justify-between container mt-5">
-      <div class="logo">Ascent Production</div>
+      <div class="logo" data-aos="fade-right">
+        <a href="">Ascent Production</a>
+      </div>
 
       <ul class="md:flex gap-10 hidden">
-        <ol>
+        <ol data-aos="fade-down">
           <a href="">L'entreprise</a>
         </ol>
-        <ol>
+        <ol data-aos="fade-down" data-aos-delay="100">
           <a href="">Services</a>
         </ol>
-        <ol>
+        <ol data-aos="fade-down" data-aos-delay="200">
           <a href="">Projets</a>
         </ol>
-        <ol>
+        <ol data-aos="fade-down" data-aos-delay="300">
           <a href="">Contact</a>
         </ol>
       </ul>
 
       <div>
-        <button @click="toggleHeaderActive">
+        <button @click="toggleHeaderActive" data-aos="fade-left">
           <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 6H20M4 12H20M4 18H20" stroke="#ffffff" stroke-width="1" stroke-linecap="round"
               stroke-linejoin="round" />

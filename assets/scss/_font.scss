@@ -2,6 +2,21 @@
     font-family: 'BarlowCondensed';
     src: url('/font/BarlowCondensed-Regular.ttf');
     font-display: swap;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'BarlowCondensed';
+    src: url('/font/BarlowCondensed-Medium.ttf');
+    font-display: swap;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'BarlowCondensed';
+    src: url('/font/BarlowCondensed-Bold.ttf');
+    font-display: swap;
+    font-weight: 700;
 }
 
 @font-face {

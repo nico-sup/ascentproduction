@@ -10,6 +10,10 @@ module.exports = {
               'grey-light-ascent': 'var(--grey-light-ascent)',
               'light-bg': 'var(--light-bg)',
             },
+            fontFamily: {
+              chewy: ['"Chewy"', "sans-serif"],
+              barlowCondensed: ['"BarlowCondensed"', "sans-serif"],
+          },
         }
   },
 }
