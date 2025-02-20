@@ -1,0 +1,16 @@
+.category-item {
+    position: relative;
+    &::before {
+        content: '';
+        @apply block absolute top-0 left-0 w-full h-full bg-black opacity-20 z-[1];
+    }
+
+    h2::after {
+        content: '';
+        @apply block h-[2px] w-5 bg-white mt-1;
+    }
+
+    a {
+        @apply absolute top-0 left-0 w-full h-full z-[2];
+    }
+}

@@ -1,7 +1,4 @@
 <template>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-    </head>
     <NuxtLayout>
         <Header />
         <NuxtPage />

@@ -6,7 +6,7 @@
     color: var(--black-ascent);
 }
 
-html {
+html,body {
     font-size: clamp(12px, calc(16 * 100vw / 1440), 1rem);
     background-color: var(--light-bg);
 }
@@ -17,6 +17,6 @@ html {
     --black-ascent: var(--light-white-color, #141614);
     --grey-ascent: var(--white-color, #969191);
     --grey-light-ascent: #DEDEDE;
-    --light-bg: #F5F6F8;
+    --light-bg: #fffbf5;
     --white: #FFFFFF;
 }

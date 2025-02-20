@@ -1,0 +1,9 @@
+.mansory {
+    ul {
+        @apply columns-2 md:columns-4;
+        li {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+    }
+}

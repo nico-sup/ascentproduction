@@ -1,0 +1,47 @@
+.hero_banner {
+    @apply h-screen w-screen bg-red-500;
+    video {
+        @apply h-full w-full object-cover;
+    }
+
+    .line-animate {
+        display: block;
+        width: 1px;
+        height: 4rem;
+        position: relative;
+
+        span {
+            width: 1px;
+            height: 4rem;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(50%,-50%);
+            animation: lineAnim 3s ease-in infinite;
+        }
+
+        @keyframes lineAnim {
+             0% {
+                height: 0;
+            }
+            50% {
+                height: 4rem;
+            }
+            70% {
+                height: 4rem;
+                  transform: translateY(0rem);
+            }
+            90% {
+                height: 0rem;
+                transform: translateY(4rem);
+            }
+
+            100% {
+                height: 0rem;
+                transform: translateY(4rem);
+            }
+        }
+
+    }
+}

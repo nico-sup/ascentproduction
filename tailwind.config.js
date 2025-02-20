@@ -11,7 +11,7 @@ module.exports = {
               'light-bg': 'var(--light-bg)',
             },
             fontFamily: {
-              chewy: ['"Chewy"', "sans-serif"],
+              cormorant: ['"Cormorant"', "sans-serif"],
               barlowCondensed: ['"BarlowCondensed"', "sans-serif"],
           },
         }

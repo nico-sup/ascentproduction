@@ -1,8 +1,4 @@
-.hero-header {
-    &::after {
-        content: '';
-        @apply absolute top-0 z-[-1] opacity-50 h-full w-full bg-black;
-    }
+.navigation {
 
     nav a,
     nav button {
@@ -14,20 +10,11 @@
     }
 
     .level_0.header-active {
-        @apply grid fixed h-full w-screen bg-white top-0 left-0 p-5;
+        @apply flex fixed h-full w-screen bg-white top-0 left-0 p-5;
 
         ol a {
-            @apply text-black-ascent;
+            @apply text-black-ascent text-3xl;
         }
 
-    }
-
-    .marquee-container {
-        @apply flex items-center min-h-20 ;
-        .marquee span {
-            font-family: Chewy;
-            font-size: 4rem;
-            color: white;
-        }
     }
 }

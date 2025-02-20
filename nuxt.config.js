@@ -8,6 +8,17 @@ export default defineNuxtConfig({
     }
   },
   
+  app: {
+    head: {
+      title: "Production Vidéo & Drone - Studio Pro",
+      meta: [
+        { name: "description", content: "Experts en production vidéo, photographie et captation drone." },
+        { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K" },
+        { name: "author", content: "Nom de ton entreprise" }
+      ]
+    }
+  },
+
   alias: {
     assets: "/<rootDir>/assets",
     '@storyblok/nuxt': require.resolve('@storyblok/nuxt')
@@ -21,7 +32,7 @@ export default defineNuxtConfig({
     'nuxt-aos',
   ],
 
-  css: ['~/assets/main.scss', 'aos/dist/aos.css'],
+  css: ['~/assets/main.scss', 'aos/dist/aos.css', 'swiper/css/pagination'],
   ssr: false,
 
   aos: {
