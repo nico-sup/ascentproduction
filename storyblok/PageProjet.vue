@@ -1,6 +1,6 @@
 <template>
     <section v-if="articles && articles.length">
-        <h2 class="text-center px-5 my-14">{{ blok.headline }}</h2>
+        <h2 class="text-center px-5 mb-14">{{ blok.headline }}</h2>
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-9 container">
             <ArticleCard 
                 v-for="article in articles"

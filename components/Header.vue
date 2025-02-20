@@ -1,5 +1,5 @@
 <template>
-  <div :class="['navigation grid z-10 fixed w-full top-0', isHomePage ? ' w-full' : 'bg-gray-900']">
+  <div :class="['navigation grid z-10 w-full top-0', isProjectPage || isHomePage ? 'fixed w-full' : 'sticky']">
     <nav class="flex justify-between items-center container py-5 z-[1]">
       <div class="logo" data-aos="fade-right">
         <img src="/images/logo.png" class="z-[1] h-14">
@@ -29,10 +29,10 @@
               <a href="">L'entreprise</a>
             </ol>
             <ol>
-              <a href="">Services</a>
+              <a href="">Nos réalisations</a>
             </ol>
             <ol>
-              <a href="">Projets</a>
+              <a href="">Nos expertises</a>
             </ol>
             <ol>
               <a href="">Contact</a>
@@ -54,7 +54,11 @@ const route = useRoute();
 // Vérifie si la route actuelle est la page d'accueil
 const isHomePage = computed(() => route.path === '/');
 
+// Vérifie si la route appartient à "projects/" mais pas à "/projects" seul
+const isProjectPage = computed(() => route.path.startsWith('/projects/') && route.path !== '/projects');
+
 function toggleHeaderActive() {
   isActive.value = !isActive.value;
 }
 </script>
+

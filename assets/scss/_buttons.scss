@@ -14,7 +14,7 @@
 }
 
 .filter {
-    @apply bg-blue-ascent text-white py-3 px-5 uppercase border border-blue-ascent hover:bg-transparent hover:text-black duration-300 ease-in-out;
+    @apply bg-green-light-ascent text-white py-3 px-5 uppercase border border-green-light-ascent hover:bg-transparent hover:text-black duration-300 ease-in-out;
 
     &.reset {
         @apply bg-black border-black hover:bg-grey-light-ascent;

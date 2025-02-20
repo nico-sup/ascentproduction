@@ -25,3 +25,9 @@ h6 {
 p {
     @apply my-4;
 }
+
+a {
+    &:hover {
+        color: var(--green-light-ascent);
+    }
+}

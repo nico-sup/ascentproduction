@@ -1,27 +1,33 @@
 <template>
     <div v-editable="blok" class="article">
-        <!-- <div class="banner">
-            <img v-if="blok.image" :src="blok.image.filename" alt="">
+        <div class="banner mb-24">
+            <img class="z-[1]" v-if="blok.image" :src="blok.image.filename" alt="">
             <h1 v-if="blok.title">{{ blok.title }}</h1>
             <p v-if="blok.description" class="max-w-[60%] text-center">{{ blok.description }}</p>
         </div>
 
         <div v-for="(content, index) in blok.content" :key="index">
             <component :is="componentMap[content.component]" :blok="content"></component>
-        </div> -->
+        </div>
     </div>
 </template>
 
 <script setup>
-    // import Feature from '~/storyblok/Feature.vue';
-    // import Split from '~/storyblok/Split.vue';
-    // import Slider from '~/storyblok/Slider.vue';
+    import Category from '~/storyblok/Category.vue';
+    import Expertise from '~/storyblok/Expertise.vue';
+    import ImageDescription from '~/storyblok/ImageDescription.vue';
+    import DescriptionImage from '~/storyblok/DescriptionImage.vue';
+    import Mansory from '~/storyblok/Mansory.vue';
+    import Video from '~/storyblok/Video.vue';
     
-    // const componentMap = {
-    //     feature: Feature,
-    //     split: Split,
-    //     slider: Slider,
-    // };
+    const componentMap = {
+        category: Category,
+        video: Video,
+        expertise: Expertise,
+        descriptionImage: DescriptionImage,
+        imageDescription: ImageDescription,
+        mansory: Mansory
+    };
 
     defineProps({ blok: Object });
 </script>   

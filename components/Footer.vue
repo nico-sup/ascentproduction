@@ -1,5 +1,5 @@
 <template>
-    <footer class="border-t pt-11 border-t-green-ascent">
+    <footer class="border-t pt-11 border-t-green-light-ascent">
         <div class="grid md:grid-cols-2 gap-y-8 lg:grid-cols-4 container pb-11">
 
             <div>
@@ -28,8 +28,8 @@
                 <h4>Ascent Production</h4>
                 <p>63000 Clermont-Ferrand</p>
 
-                <a class="text-blue-ascent" href="tel:0473317444"> 06 44 05 69 92</a>
-                <a  class="block text-blue-ascent" href="mailto:contact@7emesens.fr">ascent.audiovisuel@gmail.com</a>
+                <a class="text-green-light-ascent" href="tel:0473317444"> 06 44 05 69 92</a>
+                <a  class="block text-green-light-ascent" href="mailto:contact@7emesens.fr">ascent.audiovisuel@gmail.com</a>
             </div>
 
             <div>
@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="border-t border-r-green-ascent">
+        <div class="border-t border-r-green-light-ascent">
             <ul class="container flex justify-center items-center gap-10">
                 <li>
                     <p class="before:hidden">© {{ new Date().getFullYear() }} Ascent Production</p>

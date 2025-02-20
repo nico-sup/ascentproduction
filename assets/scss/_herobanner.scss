@@ -1,5 +1,5 @@
 .hero_banner {
-    @apply h-screen w-screen bg-red-500;
+    @apply h-screen w-full mb-24;
     video {
         @apply h-full w-full object-cover;
     }

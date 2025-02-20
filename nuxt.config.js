@@ -10,11 +10,11 @@ export default defineNuxtConfig({
   
   app: {
     head: {
-      title: "Production Vidéo & Drone - Studio Pro",
+      title: "Production Vidéo & Drone - Ascent Production",
       meta: [
         { name: "description", content: "Experts en production vidéo, photographie et captation drone." },
-        { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K" },
-        { name: "author", content: "Nom de ton entreprise" }
+        { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K, podcast" },
+        { name: "author", content: "Ascent Production" }
       ]
     }
   },
