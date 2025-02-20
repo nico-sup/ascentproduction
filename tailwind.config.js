@@ -9,6 +9,7 @@ module.exports = {
               'grey-ascent': 'var(--grey-ascent)',
               'grey-light-ascent': 'var(--grey-light-ascent)',
               'light-bg': 'var(--light-bg)',
+              'blue-ascent' : 'var(--blue-ascent)',
             },
             fontFamily: {
               cormorant: ['"Cormorant"', "sans-serif"],

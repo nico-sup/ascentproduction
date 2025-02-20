@@ -14,7 +14,7 @@
       />
       <h2 class="z-[2] uppercase">{{ blok.title }}</h2>
       <h4 class="z-[2]">{{ blok.subtitle }}</h4>
-      <a :href="blok.link.url" target="_blank" rel="noopener noreferrer"></a>
+      <a :href="blok.link.url" target="_blank" class="absolute top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
     </div>
   </section>
 </template>
