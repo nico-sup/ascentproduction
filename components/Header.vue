@@ -1,5 +1,5 @@
 <template>
-  <div :class="['navigation grid z-10 w-full top-0', isProjectPage || isHomePage ? 'fixed w-full' : 'sticky']">
+  <div :class="['navigation grid z-10 w-full top-0', isProjectPage || isHomePage ? 'fixed w-full' : 'fixed']">
     <nav class="flex justify-between items-center container py-5 z-[1]">
       <div class="logo" data-aos="fade-right">
         <img src="/images/logo.png" class="z-[1] h-14">

@@ -19,6 +19,8 @@
     import DescriptionImage from '~/storyblok/DescriptionImage.vue';
     import Mansory from '~/storyblok/Mansory.vue';
     import Video from '~/storyblok/Video.vue';
+    import Modulaire from '~/storyblok/Modulaire.vue';
+    import HeroSplit from '~/storyblok/HeroSplit.vue';
     
     const componentMap = {
         category: Category,
@@ -26,7 +28,9 @@
         expertise: Expertise,
         descriptionImage: DescriptionImage,
         imageDescription: ImageDescription,
-        mansory: Mansory
+        mansory: Mansory,
+        modulaire: Modulaire,
+        heroSplit: HeroSplit
     };
 
     defineProps({ blok: Object });

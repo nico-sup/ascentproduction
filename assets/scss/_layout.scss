@@ -11,5 +11,8 @@
 }
 
 section {
-    @apply mb-20 md:mb-24;
+    @apply my-20 md:my-24;
+}
+section:first-of-type {
+    margin-top: 0;
 }
