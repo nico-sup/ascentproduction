@@ -14,7 +14,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "aos": "^2.3.4",
-    "gsap": "^3.12.5",
+    "gsap": "^3.12.7",
     "nuxt-aos": "^1.2.5",
     "nuxt-lazy-load": "^3.0.4",
     "nuxt-swiper": "^1.2.2",
@@ -29,9 +29,9 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "dotenv": "^16.4.5",
     "@storyblok/nuxt": "^6.0.4",
-    "postcss-import": "^16.0.1",
-    "nuxt": "^3.10.2"
+    "dotenv": "^16.4.5",
+    "nuxt": "^3.10.2",
+    "postcss-import": "^16.0.1"
   }
 }
