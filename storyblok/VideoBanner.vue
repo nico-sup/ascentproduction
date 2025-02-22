@@ -28,14 +28,14 @@ onMounted(() => {
   }
 
   $gsap.fromTo(videoElement.value,
-    { scale: 0.5, y: "50vh" },
+    { scale: 0.5, y: "20vh" },
     {
       scale: 0.9, y: "0vh",
       ease: "power2.out",
       scrollTrigger: {
         trigger: videoContainer.value,
-        start: "top bottom",  // Début de l'effet avant que la vidéo soit visible
-        end: "center center",   // Fin de l'effet quand la vidéo est bien dans le viewport
+        start: "10% bottom",  // Début de l'effet avant que la vidéo soit visible
+        end: "80% center",   // Fin de l'effet quand la vidéo est bien dans le viewport
         scrub: true,
       },
     }

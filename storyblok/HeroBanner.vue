@@ -4,9 +4,9 @@
             <source src="/videos/videoheader.mov"/>
         </video>
         <div class="z-[1] mt-auto pt-20">
-            <h1 class="relative text-white text-center font-cormorant font-bold md:text-[4rem] uppercase mb-16"> {{ blok.title }} <span class="opacity-0 absolute">Vidéaste professionnel à clermont-ferrand clermont</span> </h1>
+            <h1 class="relative text-white text-center font-cormorant font-bold md:text-[4rem] uppercase mb-16"> {{ blok.title }} <span class="opacity-0 absolute left-0">Vidéaste professionnel à clermont-ferrand clermont</span> </h1>
             <div class="grid items-center justify-center text-center">
-                <h2 class="text-white uppercase text-2xl m-0 font-light relative"> {{ blok.subtitle }} <span class="opacity-0 absolute">Mes services en vidéo </span> </h2>
+                <h2 class="text-white uppercase text-2xl m-0 font-light relative"> {{ blok.subtitle }} <span class="opacity-0 absolute left-0">Mes services en vidéo </span> </h2>
             </div>
         </div>
 
