@@ -14,3 +14,14 @@
         @apply absolute top-0 left-0 w-full h-full z-[2];
     }
 }
+
+.has-link div {
+    &:hover {
+        transform: translateY(-10px);
+        transition: all 0.4s ease-in;
+    }
+    
+    h2 {
+        @apply underline;
+    }
+}

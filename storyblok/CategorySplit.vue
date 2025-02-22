@@ -2,6 +2,7 @@
   <section 
     v-editable="blok" 
     class="category-split my-4" 
+    :class="{'has-link': blok.link.url, 'no-link': !blok.link.url}" 
     data-aos="fade-up"
     :data-aos-delay="index * 300"
   >
@@ -10,11 +11,11 @@
         v-if="blok.image" 
         :src="blok.image.filename" 
         :alt="blok.image.alt" 
-        class="w-full h-[70vh] object-cover z-0 mb-3" 
+        class="w-full h-[40vh] md:h-[70vh] object-cover z-0 mb-3" 
       />
       <h2 class="z-[2] uppercase">{{ blok.title }}</h2>
       <h4 class="z-[2]">{{ blok.subtitle }}</h4>
-      <a :href="blok.link.url" class="absolute top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
+      <a v-if="blok.link.url" :href="blok.link.url" class="absolute top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
     </div>
   </section>
 </template>
