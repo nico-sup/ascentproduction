@@ -1,0 +1,22 @@
+.video-bloc {
+    video {
+       clip-path: inset(0% 0 0% 0);
+    }
+}
+
+.video-section {
+    li:last-child {
+            @apply border-b-2 border-b-black;
+    }
+
+    @media screen and (min-width: 768px) {
+        li:nth-last-child(-n+2) {
+            @apply border-b-2 border-b-black;
+        }
+
+         li:nth-child(even) {
+        @apply border-l-2 border-l-black;
+    }
+    }
+
+}
