@@ -50,8 +50,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="videoContainer" class="h-[100vh] container flex items-center relative justify-center">
-    <div class="absolute container top-0 left-0 w-full h-screen flex justify-center items-center overflow-hidden">
+  <section ref="videoContainer" class="h-[70vh] md:h-[100vh] container flex items-center relative justify-center">
+    <div class="absolute container top-0 left-0 w-full h-[70vh] md:h-screen flex justify-center items-center overflow-hidden">
       <video ref="videoElement" muted loop playsinline class="h-full w-full object-cover">
         <source :src="blok.video.filename" />
       </video>
