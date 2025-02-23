@@ -10,10 +10,10 @@ export default defineNuxtConfig({
   
   app: {
     head: {
-      title: "Production Vidéo & Drone - Ascent Production",
+      title: "Production Vidéo, Drone, photographe, montage et création de site internet - Ascent Production",
       meta: [
-        { name: "description", content: "Experts en production vidéo, photographie et captation drone." },
-        { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K, podcast" },
+        { name: "description", content: "Experts en production vidéo, photographie professionnelle, captation drone et création de sites internet. Nous vous accompagnons dans la réalisation de vidéos créatives, de prises de vue aériennes spectaculaires, ainsi que dans la création de sites web sur mesure qui mettent en valeur votre entreprise. Que ce soit pour des événements, des films d'entreprise, des vidéos publicitaires ou la conception d'un site performant et responsive, notre équipe utilise des outils de pointe pour offrir des solutions visuelles et digitales qui répondent parfaitement à vos besoins."  },
+        { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K, films entreprises, création site internet, développeur web, événementiel, drone fpv, podcast" },
         { name: "author", content: "Ascent Production" }
       ]
     }
