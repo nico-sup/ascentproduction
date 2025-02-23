@@ -10,27 +10,31 @@ const { $gsap } = useNuxtApp();
 const activeImage = ref(null);
 const imageContainer = ref(null);
 const showImage = ref(false);
-const hoveredIndex = ref(null); // Indice de l'élément actif
+const hoveredIndex = ref(null);
+const isMobile = ref(false);
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth <= 768; // Désactive l'effet sur mobile
+};
 
 const handleMouseEnter = async (item, index, event) => {
-  hoveredIndex.value = index; // Définit l'élément actif
+  if (isMobile.value) return; // Pas d'image sur mobile
+
+  hoveredIndex.value = index;
 
   if (item.image?.filename) {
     activeImage.value = item.image.filename;
     showImage.value = true;
 
-    // Assurer que l'élément est bien rendu avant d'animer
     await nextTick();
 
     if (imageContainer.value) {
-      // Positionne immédiatement l'image sous la souris AVANT animation
       $gsap.set(imageContainer.value, {
         x: event.clientX + 20,
         y: event.clientY + 20,
-        visibility: "visible", // Rendre visible sans fade-in
+        visibility: "visible",
       });
 
-      // Animation d'opacité après positionnement
       $gsap.to(imageContainer.value, {
         opacity: 1,
         duration: 0.3,
@@ -41,7 +45,7 @@ const handleMouseEnter = async (item, index, event) => {
 };
 
 const handleMouseLeave = () => {
-  hoveredIndex.value = null; // Réinitialise l'effet de flou et la couleur
+  hoveredIndex.value = null;
   showImage.value = false;
 
   if (imageContainer.value) {
@@ -54,22 +58,34 @@ const handleMouseLeave = () => {
 };
 
 const handleMouseMove = (event) => {
-  if (!showImage.value || !imageContainer.value) return;
+  if (isMobile.value || !showImage.value || !imageContainer.value) return;
 
   $gsap.to(imageContainer.value, {
     x: event.clientX + 20,
     y: event.clientY + 20,
-    duration: 0.1, // Réactivité rapide
+    duration: 0.1,
     ease: "power2.out",
   });
 };
 
+const handleScroll = () => {
+  if (isMobile.value) return;
+
+  showImage.value = false; // Cache l'image quand on scroll
+  hoveredIndex.value = null;
+};
+
 onMounted(() => {
-  document.addEventListener("mousemove", handleMouseMove);
+  checkScreenSize();
+  window.addEventListener("resize", checkScreenSize);
+  window.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("scroll", handleScroll);
 });
 
 onBeforeUnmount(() => {
-  document.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("resize", checkScreenSize);
+  window.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
@@ -83,7 +99,7 @@ onBeforeUnmount(() => {
         @mouseleave="handleMouseLeave"
         :class="{
           'blur-effect': hoveredIndex !== null && hoveredIndex !== index,
-          'active-text': hoveredIndex === index
+          'active-text': hoveredIndex === index,
         }"
         class="col-span-full z-[2]"
       >
@@ -91,7 +107,7 @@ onBeforeUnmount(() => {
       </li>
     </ul>
 
-    <div v-if="showImage && activeImage" ref="imageContainer" class="hover-image">
+    <div v-if="!isMobile && showImage && activeImage" ref="imageContainer" class="hover-image">
       <img :src="activeImage" alt="Image associée" />
     </div>
   </section>
@@ -119,16 +135,17 @@ li {
   opacity: 0.6;
 }
 
+/* Image flottante */
 .hover-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 150px;
-  height: 150px;
+  height: 250px;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -50%) rotate(20deg);
+  transform: translate(-50%, -50%) rotate(10deg);
 }
 
 .hover-image img {
@@ -137,19 +154,5 @@ li {
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-@media screen and (min-width:768px) {
-    .hover-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 150px;
-    height: 250px;
-    pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transform: translate(-50%, -50%) rotate(20deg);
-    }
 }
 </style>

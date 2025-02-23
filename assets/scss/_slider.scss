@@ -2,7 +2,7 @@
     a {
         @apply h-full w-full relative block;
         img {
-            @apply h-full w-[10vw] mx-auto object-contain;
+            @apply h-full w-[80%] md:w-[10vw] mx-auto object-contain;
         }
     }
 
