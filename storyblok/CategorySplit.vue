@@ -7,7 +7,7 @@
     :data-aos-delay="index * 300"
   >
     <div class="flex flex-col justify-center relative">
-      <template v-if="blok.video">
+      <template v-if="blok.video && blok.video.filename">
         <video 
           :src="blok.video.filename" 
           class="w-full h-[40vh] md:h-[70vh] object-cover z-0 mb-3" 
