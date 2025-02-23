@@ -36,16 +36,16 @@
                 <h4>Navigation</h4>
                 <ul>
                     <li>
-                        <NuxtLink class="hover:text-green-cinetech" :to="'/'">Marques</NuxtLink>
+                        <NuxtLink class="hover:text-green" :to="'/'">Marques</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink class="hover:text-green-cinetech" :to="'/'">Univers</NuxtLink>
+                        <NuxtLink class="hover:text-green" :to="'/'">Univers</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink class="hover:text-green-cinetech" :to="'/'">Réalisations</NuxtLink>
+                        <NuxtLink class="hover:text-green" :to="'/'">Réalisations</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink class="hover:text-green-cinetech" :to="'/'">Contact</NuxtLink>
+                        <NuxtLink class="hover:text-green" :to="'/'">Contact</NuxtLink>
                     </li>
                 </ul>
             </div>

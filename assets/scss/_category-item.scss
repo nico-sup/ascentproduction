@@ -2,7 +2,7 @@
     position: relative;
     &::before {
         content: '';
-        @apply block absolute top-0 left-0 w-full h-full bg-black opacity-20 z-[1];
+        @apply block absolute top-0 left-0 w-full h-full bg-black opacity-20 z-[1] rounded-xl;
     }
 
     h2::after {

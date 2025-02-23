@@ -21,3 +21,11 @@ html,body {
     --light-bg: #fffbf5;
     --white: #FFFFFF;
 }
+
+img, video {
+    @apply rounded-xl;
+}
+
+.active-text h2{
+    @apply text-green-light-ascent;
+}

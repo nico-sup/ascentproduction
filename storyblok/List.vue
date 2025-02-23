@@ -1,0 +1,155 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { useNuxtApp } from "#app";
+import ImgText from "~/storyblok/ImgText.vue";
+
+defineProps({ blok: Object });
+
+const { $gsap } = useNuxtApp();
+
+const activeImage = ref(null);
+const imageContainer = ref(null);
+const showImage = ref(false);
+const hoveredIndex = ref(null); // Indice de l'élément actif
+
+const handleMouseEnter = async (item, index, event) => {
+  hoveredIndex.value = index; // Définit l'élément actif
+
+  if (item.image?.filename) {
+    activeImage.value = item.image.filename;
+    showImage.value = true;
+
+    // Assurer que l'élément est bien rendu avant d'animer
+    await nextTick();
+
+    if (imageContainer.value) {
+      // Positionne immédiatement l'image sous la souris AVANT animation
+      $gsap.set(imageContainer.value, {
+        x: event.clientX + 20,
+        y: event.clientY + 20,
+        visibility: "visible", // Rendre visible sans fade-in
+      });
+
+      // Animation d'opacité après positionnement
+      $gsap.to(imageContainer.value, {
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+  }
+};
+
+const handleMouseLeave = () => {
+  hoveredIndex.value = null; // Réinitialise l'effet de flou et la couleur
+  showImage.value = false;
+
+  if (imageContainer.value) {
+    $gsap.to(imageContainer.value, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  }
+};
+
+const handleMouseMove = (event) => {
+  if (!showImage.value || !imageContainer.value) return;
+
+  $gsap.to(imageContainer.value, {
+    x: event.clientX + 20,
+    y: event.clientY + 20,
+    duration: 0.1, // Réactivité rapide
+    ease: "power2.out",
+  });
+};
+
+onMounted(() => {
+  document.addEventListener("mousemove", handleMouseMove);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("mousemove", handleMouseMove);
+});
+</script>
+
+<template>
+  <section class="container">
+    <ul class="layout-grid">
+      <li
+        v-for="(item, index) in blok.item"
+        :key="index"
+        @mouseenter="(event) => handleMouseEnter(item, index, event)"
+        @mouseleave="handleMouseLeave"
+        :class="{
+          'blur-effect': hoveredIndex !== null && hoveredIndex !== index,
+          'active-text': hoveredIndex === index
+        }"
+        class="col-span-full z-[2]"
+      >
+        <ImgText :blok="item" />
+      </li>
+    </ul>
+
+    <div v-if="showImage && activeImage" ref="imageContainer" class="hover-image">
+      <img :src="activeImage" alt="Image associée" />
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.container {
+  position: relative;
+}
+
+.layout-grid {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+  padding: 10px;
+  transition: filter 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Effet de flou et opacité pour les éléments non actifs */
+.blur-effect {
+  filter: blur(5px);
+  opacity: 0.6;
+}
+
+.hover-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) rotate(20deg);
+}
+
+.hover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width:768px) {
+    .hover-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 250px;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%) rotate(20deg);
+    }
+}
+</style>

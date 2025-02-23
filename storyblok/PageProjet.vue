@@ -1,7 +1,7 @@
 <template>
-    <section v-if="articles && articles.length">
+    <section v-if="articles && articles.length" class="!mt-24">
         <h2 class="text-center px-5 mb-14">{{ blok.headline }}</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-9 container">
+        <div class="grid md:grid-cols-2 gap-2 container">
             <ArticleCard 
                 v-for="article in articles"
                 :key="article.uuid"

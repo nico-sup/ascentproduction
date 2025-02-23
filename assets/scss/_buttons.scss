@@ -1,5 +1,5 @@
 .button {
-    @apply  py-4 px-7 border border-[var(--black)] text-[var(--white)] bg-black inline-flex items-center gap-4 ease-in-out duration-300;
+    @apply  py-4 px-7 border rounded-xl border-[var(--black)] text-[var(--white)] bg-black inline-flex items-center gap-4 ease-in-out duration-300;
     &::before {
         display: none;
     }

@@ -9,11 +9,12 @@ form {
     }
 
     input, textarea {
-        @apply border border-green-light-ascent px-6 py-4 text-sm;
+        @apply border border-green-light-ascent px-6 py-4 text-sm rounded-xl;
     }
 
     textarea {
         min-height: 15rem;
+        @apply rounded-xl;
     }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <section v-editable="blok" class="container-full h-screen relative flex justify-center items-center">
-        <img class="absolute top-0 left-0 h-full w-full z-0 object-cover" v-if="blok.image" :src="blok.image.filename" :alt="blok.image.alt" alt="">
+        <img class="absolute rounded-none top-0 left-0 h-full w-full z-0 object-cover" v-if="blok.image" :src="blok.image.filename" :alt="blok.image.alt" alt="">
         
         <iframe class="z-[1] relative border-2 border-b-white" 
             v-if="blok.videoUrl" 

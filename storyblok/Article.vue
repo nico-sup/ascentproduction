@@ -1,7 +1,7 @@
 <template>
     <div v-editable="blok" class="article">
         <div class="banner mb-24">
-            <img class="z-[1]" v-if="blok.image" :src="blok.image.filename" alt="">
+            <img class="z-[1] rounded-none" v-if="blok.image" :src="blok.image.filename" alt="">
             <h1 v-if="blok.title">{{ blok.title }}</h1>
             <p v-if="blok.description" class="max-w-[60%] text-center">{{ blok.description }}</p>
         </div>

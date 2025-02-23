@@ -2,7 +2,9 @@
   <div :class="['navigation grid z-10 w-full top-0', isProjectPage || isHomePage ? 'fixed w-full' : 'fixed']">
     <nav class="flex justify-between items-center container py-5 z-[1]">
       <div class="logo" data-aos="fade-right">
-        <img src="/images/logo.png" class="z-[1] h-14">
+        <NuxtLink :to="'/'">
+          <img src="/images/logo.png" class="z-[1] h-14">
+        </NuxtLink>
       </div>
 
       <div>
@@ -26,16 +28,18 @@
 
           <ul class="flex gap-10 flex-col justify-center items-center text-black col-span-8 flex-1">
             <ol>
-              <a href="">L'entreprise</a>
-            </ol>
-            <ol>
-              <a href="">Nos réalisations</a>
-            </ol>
-            <ol>
-              <a href="">Nos expertises</a>
-            </ol>
-            <ol>
-              <a href="">Contact</a>
+              <li  @click="toggleHeaderActive" >
+                <NuxtLink :to="'/'">Accueil</NuxtLink>
+              </li>
+              <li  @click="toggleHeaderActive" >
+                <NuxtLink :to="'/projects'">Nos réalisations</NuxtLink>
+              </li>
+              <li  @click="toggleHeaderActive" >
+                <NuxtLink :to="'/projects'">Nos expertises</NuxtLink>
+              </li>
+              <li  @click="toggleHeaderActive" >
+                <NuxtLink :to="'/projects'">Contact</NuxtLink>
+              </li>
             </ol>
           </ul>
         </div>
