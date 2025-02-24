@@ -2,7 +2,7 @@
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
     nav a,
     nav button {
-        color: white;
+        @apply text-3xl font-bold;
     }
 
     .level_0 {

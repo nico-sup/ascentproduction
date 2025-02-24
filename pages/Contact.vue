@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container form mb-24">
+    <div class="container form mt-24 mb-24">
         <h2 class="my-10 font-bold">Nous contacter</h2>
 
         <div class="grid md:grid-cols-2 gap-20">
@@ -57,7 +57,7 @@
         
                     </div>
                 </form>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44515.29525332366!2d3.0715080005685262!3d45.787101499681185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f71bdd7f2e8507%3A0x3994306038a06f22!2sClermont-Ferrand!5e0!3m2!1sfr!2sfr!4v1740038807423!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44515.29525332366!2d3.0715080005685262!3d45.787101499681185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f71bdd7f2e8507%3A0x3994306038a06f22!2sClermont-Ferrand!5e0!3m2!1sfr!2sfr!4v1740038807423!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="grid md:grid-cols-3 gap-4 mt-10">

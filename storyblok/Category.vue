@@ -4,7 +4,7 @@
             <span data-aos="fade-up">{{ blok.tag }}</span>
             <h2 class="text-green-light-ascent" data-aos="fade-right">{{ blok.title }}</h2>
         </div>
-        <div class="col-span-10">
+        <div class="col-span-full md:col-span-10">
             <ul>
                 <li v-for="(item, index) in blok.items" :key="index">
                     <CategoryItem :blok="item" />

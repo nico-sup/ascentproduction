@@ -27,20 +27,18 @@
           </button>
 
           <ul class="flex gap-10 flex-col justify-center items-center text-black col-span-8 flex-1">
-            <ol>
-              <li  @click="toggleHeaderActive" >
-                <NuxtLink :to="'/'">Accueil</NuxtLink>
-              </li>
-              <li  @click="toggleHeaderActive" >
-                <NuxtLink :to="'/projects'">Nos réalisations</NuxtLink>
-              </li>
-              <li  @click="toggleHeaderActive" >
-                <NuxtLink :to="'/projects'">Nos expertises</NuxtLink>
-              </li>
-              <li  @click="toggleHeaderActive" >
-                <NuxtLink :to="'/projects'">Contact</NuxtLink>
-              </li>
-            </ol>
+            <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/'">Accueil</NuxtLink>
+            </li>
+            <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/projects'">Nos réalisations</NuxtLink>
+            </li>
+            <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/projects'">Nos expertises</NuxtLink>
+            </li>
+            <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/contact'">Contact</NuxtLink>
+            </li>
           </ul>
         </div>
       </div>
