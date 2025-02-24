@@ -1,5 +1,5 @@
 <template>
-    <section class="mansory container-full">
+    <section class="mansory container">
         <ul>
              <li v-for="(asset, index) in blok.images" :key="index" class="image-wrapper">
                  <img :src="asset.filename" :alt="'Image ' + (index + 1)" @click="openLightbox(index)" class="object-cover h-full w-full"   data-aos="zoom-in" :data-aos-delay="index * 150"/>

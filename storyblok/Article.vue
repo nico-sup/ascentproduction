@@ -21,6 +21,11 @@
     import Video from '~/storyblok/Video.vue';
     import Modulaire from '~/storyblok/Modulaire.vue';
     import HeroSplit from '~/storyblok/HeroSplit.vue';
+    import List from '~/storyblok/List.vue';
+    import Slider from '~/storyblok/Slider.vue';
+    import VideoBanner from '~/storyblok/VideoBanner.vue';
+    import VideoSection from '~/storyblok/VideoSection.vue';
+    import NousContacter from '~/storyblok/NousContacter.vue';
     
     const componentMap = {
         category: Category,
@@ -30,7 +35,12 @@
         imageDescription: ImageDescription,
         mansory: Mansory,
         modulaire: Modulaire,
-        heroSplit: HeroSplit
+        heroSplit: HeroSplit,
+        list: List,
+        slider: Slider,
+        videoBanner: VideoBanner,
+        videoSection: VideoSection,
+        nousContacter: NousContacter,
     };
 
     defineProps({ blok: Object });
