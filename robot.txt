@@ -16,4 +16,4 @@ Allow: /*.svg$
 Allow: /*.webp$
 
 # Sitemap
-Sitemap: https://www.votresite.com/sitemap.xml
+Sitemap: https://ascentproduction.fr/sitemap.xml

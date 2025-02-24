@@ -11,7 +11,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-span-full text-right">
+        <div class="col-span-full text-right" v-if="blok.link">
             <NuxtLink class=" button" :to="'/projects'">Explorer les projets</NuxtLink>
         </div>
     </section>

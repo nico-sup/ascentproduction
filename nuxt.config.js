@@ -31,7 +31,21 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'nuxt-lazy-load',
     'nuxt-aos',
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: {
+    hostname: 'https://ascentproduction.fr',
+    routes: async () => {
+      const storyblokApi = 'https://api.storyblok.com/v2/cdn/stories';
+      const token = 'nwHe9gnH4kvEKc1DtbXK8wtt';
+
+      const response = await fetch(`${storyblokApi}?token=${token}&version=published`);
+      const { stories } = await response.json();
+
+      return stories.map(story => `/${story.full_slug}`);
+    }
+  },
 
   css: ['~/assets/main.scss', 'aos/dist/aos.css', 'swiper/css/pagination'],
   ssr: false,

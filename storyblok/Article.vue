@@ -26,6 +26,7 @@
     import VideoBanner from '~/storyblok/VideoBanner.vue';
     import VideoSection from '~/storyblok/VideoSection.vue';
     import NousContacter from '~/storyblok/NousContacter.vue';
+    import Activities from '~/storyblok/Activities.vue';
     
     const componentMap = {
         category: Category,
@@ -41,6 +42,7 @@
         videoBanner: VideoBanner,
         videoSection: VideoSection,
         nousContacter: NousContacter,
+        activities: Activities,
     };
 
     defineProps({ blok: Object });
