@@ -45,3 +45,11 @@
 
     }
 }
+
+.hero_banner_img {
+    position: relative;
+    &::after {
+        content: '';
+        @apply absolute top-0 left-0 h-full w-full bg-black bg-opacity-30 z-[1] rounded-xl;
+    }
+}

@@ -43,6 +43,9 @@
 
             <div>
                 <h4>Liens utiles</h4>
+                <NuxtLink class="button" :to="'/'">Accueil</NuxtLink>
+                <NuxtLink class="button" :to="'/projects'">Nos réalisations</NuxtLink>
+                <NuxtLink class="button" :to="'/nos-expertises'">Nos expertises</NuxtLink>
                 <NuxtLink class="button" :to="'/contact'">Contact</NuxtLink>
             </div>
 

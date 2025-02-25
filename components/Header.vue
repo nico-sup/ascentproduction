@@ -34,7 +34,7 @@
               <NuxtLink :to="'/projects'">Nos réalisations</NuxtLink>
             </li>
             <li  @click="toggleHeaderActive" >
-              <NuxtLink :to="'/projects'">Nos expertises</NuxtLink>
+              <NuxtLink :to="'/nos-expertises'">Nos expertises</NuxtLink>
             </li>
             <li  @click="toggleHeaderActive" >
               <NuxtLink :to="'/contact'">Contact</NuxtLink>

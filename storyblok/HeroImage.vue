@@ -1,9 +1,9 @@
 <template>
-    <div v-editable="blok" class="hero_banner relative flex justify-center items-start flex-col">
+    <div v-editable="blok" class="hero_banner hero_banner_img relative flex justify-center items-start flex-col">
 
         <img class="absolute top-0 left-0 h-full w-full object-cover" v-if="blok.image.filename" :src="blok.image.filename" :alt="blok.image.alt" alt="">
         
-        <div class="z-[1] pl-5 md:pl-20 mb-9">
+        <div class="z-[2] pl-5 md:pl-20 mb-9">
             <h1 class="relative text-white font-cormorant font-bold uppercase mb-16"> {{ blok.title }} <span class="opacity-0 absolute left-0">Vidéaste professionnel à clermont-ferrand clermont</span> </h1>
             <p class="text-white uppercase w-[80%] md:w-[50%] m-0 font-light relative"> {{ blok.description }} <span class="opacity-0 absolute left-0">Mes services en vidéo </span> </p>
         </div>
