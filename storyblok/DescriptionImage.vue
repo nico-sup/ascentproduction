@@ -1,5 +1,5 @@
 <template>
-    <section v-editable="blok" class="image-description container layout-grid overflow-hidden" data-aos="fade-up">
+    <section v-editable="blok" class="image-description container layout-grid">
         <div class="col-span-full md:col-span-6" >
             <h2 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" v-if="blok.title">{{ blok.title }}</h2>
             <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" v-if="blok.description">{{ blok.description }}</p>

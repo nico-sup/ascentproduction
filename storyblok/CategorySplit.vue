@@ -28,10 +28,10 @@
       <h2 class="z-[2] text-[1.7rem] uppercase">{{ blok.title }}</h2>
       <h4 class="z-[2]">{{ blok.subtitle }}</h4>
       <template v-if="isInternalLink(blok.link)">
-        <NuxtLink :to="getInternalLink(blok.link)" class="absolute top-0 left-0 h-full w-full"></NuxtLink>
+        <NuxtLink :to="getInternalLink(blok.link)" class="absolute z-[2] top-0 left-0 h-full w-full"></NuxtLink>
       </template>
       <template v-else>
-        <a v-if="blok.link.url" :href="blok.link.url" class="absolute top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
+        <a v-if="blok.link.url" :href="blok.link.url" class="absolute z-[2] top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
       </template>
     </div>
   </section>

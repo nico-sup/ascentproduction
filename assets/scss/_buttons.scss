@@ -25,3 +25,7 @@
 .active-filter {
     @apply bg-transparent text-black;
 }
+
+.button-play {
+    @apply bg-white rounded-xl flex items-center text-black py-4 px-7;
+}
