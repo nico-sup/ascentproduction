@@ -9,11 +9,11 @@
         </div>
 
         <div class="z-[2] pl-5 md:pl-20 flex gap-6">
-            <a class="button-play gap-2 font-bold" target="_blank" v-if="blok.link.url" :href="blok.link.url">
-                <img class="h-4 w-full object-contain" src="/images/play.svg" alt="play button">
+            <a class="button-play gap-2 font-bold" v-if="blok.link.url" :href="blok.link.url">
+                <img class="h-4 w-auto object-contain" src="/images/play.svg" alt="play button">
                 Play
             </a>
-            <a class="bg-white bg-opacity-30 flex items-center px-4 w-fit rounded-xl font-bold text-white anchor hover:text-black" href="#"> {{ blok.anchor }}</a>
+            <a class="bg-white bg-opacity-30 flex items-center px-4 rounded-xl font-bold text-white anchor hover:text-black" href="#"> {{ blok.anchor }}</a>
         </div>
         
     </div>
