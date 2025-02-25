@@ -37,6 +37,12 @@
               <NuxtLink :to="'/nos-expertises'">Nos expertises</NuxtLink>
             </li>
             <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/production-audiovisuelle'">Production audioviuselle</NuxtLink>
+            </li>
+            <li  @click="toggleHeaderActive" >
+              <NuxtLink :to="'/site-internet'">Création de site internet</NuxtLink>
+            </li>
+            <li  @click="toggleHeaderActive" >
               <NuxtLink :to="'/contact'">Contact</NuxtLink>
             </li>
           </ul>

@@ -28,7 +28,7 @@
                 <h4>Ascent Production</h4>
                 <p>63000 Clermont-Ferrand</p>
 
-                <a class="text-green-light-ascent" href="tel:0473317444"> 06 44 05 69 92</a>
+                <a class="text-green-light-ascent" href="tel:0644056992"> 06 44 05 69 92</a>
                 <a  class="block text-green-light-ascent" href="mailto:contact@7emesens.fr">ascent.audiovisuel@gmail.com</a>
             </div>
 
