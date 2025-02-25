@@ -16,6 +16,13 @@ export default defineNuxtConfig({
         { name: "keywords", content: "production vidéo, drone, photographie, montage, vidéo 4K, films entreprises, création site internet, développeur web, événementiel, drone fpv, podcast" },
         { name: "author", content: "Ascent Production" },
         { name: "google-site-verification", content:"8DLnBD6HRkhCIPw4ayfGnoY0gJ2RFZV2ySR7BJAETew"}
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'manifest', href: '/site.webmanifest' }
       ]
     }
   },
