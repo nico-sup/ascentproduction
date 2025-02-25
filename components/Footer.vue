@@ -36,6 +36,15 @@
                 <h4>Navigation</h4>
                 <ul>
                     <li>
+                        <NuxtLink class="hover:text-green" :to="'/'">Accueil</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink class="hover:text-green" :to="'/projects'">Nos projets</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink class="hover:text-green" :to="'/nos-expertises'">Nos expertises</NuxtLink>
+                    </li>
+                    <li>
                         <NuxtLink class="hover:text-green" :to="'/contact'">Contact</NuxtLink>
                     </li>
                 </ul>
@@ -43,9 +52,6 @@
 
             <div>
                 <h4>Liens utiles</h4>
-                <NuxtLink class="button" :to="'/'">Accueil</NuxtLink>
-                <NuxtLink class="button" :to="'/projects'">Nos réalisations</NuxtLink>
-                <NuxtLink class="button" :to="'/nos-expertises'">Nos expertises</NuxtLink>
                 <NuxtLink class="button" :to="'/contact'">Contact</NuxtLink>
             </div>
 
