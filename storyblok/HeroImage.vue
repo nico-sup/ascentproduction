@@ -13,7 +13,7 @@
                 <img class="h-4 w-full object-contain" src="/images/play.svg" alt="play button">
                 Play
             </a>
-            <a class="bg-white bg-opacity-30 flex items-center px-4 rounded-xl font-bold text-white anchor hover:text-black" href="#"> {{ blok.anchor }}</a>
+            <a class="bg-white bg-opacity-30 flex items-center px-4 w-fit rounded-xl font-bold text-white anchor hover:text-black" href="#"> {{ blok.anchor }}</a>
         </div>
         
     </div>
