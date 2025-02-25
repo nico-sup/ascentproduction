@@ -15,8 +15,8 @@
           loop 
           muted 
           playsinline
-          data-no-lazy 
-          no-lazy
+          data-not-lazy 
+          not-lazy
         ></video>
       </template>
       <template v-else-if="blok.image">

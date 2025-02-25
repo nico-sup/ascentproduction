@@ -1,6 +1,6 @@
 <template>
     <div v-editable="blok" class="hero_banner relative flex justify-center items-center flex-col">
-        <video autoplay muted playsinline loop data-no-lazy no-lazy class="absolute top-0 left-0 h-full w-full z-0">
+        <video autoplay muted playsinline loop data-not-lazy not-lazy class="absolute top-0 left-0 h-full w-full z-0">
             <source src="/videos/videoheader.mov"/>
         </video>
         <div class="z-[1] mt-auto pt-20">
