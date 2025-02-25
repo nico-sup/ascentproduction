@@ -41,3 +41,7 @@ img, video {
     right: auto;
     z-index: 10;
 }
+
+.calendly-badge-widget .calendly-badge-content {
+    @apply rounded-xl;
+}

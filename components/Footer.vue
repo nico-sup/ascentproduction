@@ -89,14 +89,17 @@ const scrollButton = ref(null);
 onMounted(() => {
   document.addEventListener('scroll', handleScroll);
   scrollButton.value.addEventListener('click', goToTop);
+
 });
 
 function handleScroll() {
   if (window.scrollY >= window.innerHeight) {
-
+    const calendly = document.querySelector('.calendly-badge-widget')
+    calendly.style.display = 'block';
     scrollButton.value.style.display = 'block';
   } else {
-   
+    const calendly = document.querySelector('.calendly-badge-widget')
+    calendly.style.display = 'none';
     scrollButton.value.style.display = 'none';
   }
 }
