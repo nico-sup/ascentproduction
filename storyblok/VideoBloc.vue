@@ -3,7 +3,7 @@
         <span class="text-right w-full flex justify-end items-center gap-3"><span class="dot"></span> ({{ blok.number }})</span>
         <h3 class="text-center">{{ blok.title }}</h3>
         <div class="w-[60vw] h-[30vw] md:w-[32vw] md:h-[20vw] overflow-hidden">
-            <video autoplay muted loop playsinline data-not-lazy not-lazy class="h-full w-full object-cover scale-125" >
+            <video autoplay muted loop playsinline class="h-full w-full object-cover scale-125" >
                 <source :src="blok.asset.filename" />
           </video>
         </div>

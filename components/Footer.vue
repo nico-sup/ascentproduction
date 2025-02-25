@@ -72,7 +72,7 @@
         </div>
     </footer>
 
-    <button @click="goToTop" ref="scrollButton" class="fixed bg-white right-6 bottom-6 border border-grey-ascent p-4 z-[2]">
+    <button @click="goToTop" ref="scrollButton" class="fixed bg-white right-6 bottom-6 border border-grey-ascent p-4 z-[2] rounded-xl">
         <svg width="16" height="16" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M34.4086 18.3646C35.4501 17.3232 35.4501 15.635 34.4086 14.5934L21.3627 1.56024C19.2795 -0.5208 15.9041 -0.519973 13.8222 1.56208L0.781117 14.603C-0.260217 15.6446 -0.260217 17.3328 0.781117 18.3744C1.82245 19.4158 3.51098 19.4158 4.55232 18.3744L15.7142 7.21256C16.7555 6.17117 18.4438 6.17117 19.4854 7.21256L30.6374 18.3646C31.6788 19.4062 33.3673 19.4062 34.4086 18.3646Z" fill="#27292F"/>
         </svg>

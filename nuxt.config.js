@@ -22,10 +22,34 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'manifest', href: '/site.webmanifest' }
-      ]
-    }
+        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'stylesheet', href: 'https://assets.calendly.com/assets/external/widget.css' },
+      ],
+      script: [
+        {
+          src: "https://assets.calendly.com/assets/external/widget.js",
+          type: "text/javascript",
+          async: true,
+        },
+        {
+          innerHTML: `
+            window.onload = function() { 
+              Calendly.initBadgeWidget({ 
+                url: 'https://calendly.com/ascent-audiovisuel/parlons-de-votre-projet', 
+                text: 'Schedule time with me', 
+                color: '#8aba9c', 
+                textColor: '#ffffff' 
+              }); 
+            }
+          `,
+          type: "text/javascript",
+        },
+      ],
+    },
   },
+
+
+
 
   alias: {
     assets: "/<rootDir>/assets",
