@@ -36,7 +36,7 @@ export default defineNuxtConfig({
             window.onload = function() { 
               Calendly.initBadgeWidget({ 
                 url: 'https://calendly.com/ascent-audiovisuel/parlons-de-votre-projet', 
-                text: 'Schedule time with me', 
+                text: 'On se rencontre ?', 
                 color: '#8aba9c', 
                 textColor: '#ffffff' 
               }); 
