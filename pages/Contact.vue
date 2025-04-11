@@ -73,7 +73,7 @@
 
             <div>
                 <p class="text-xl">Adresse mail :</p>
-                <a href="mailto:contact@7emesens.fr" class="before:hidden flex  items-center gap-2 hover:text-green-light-ascent">
+                <a href="mailto:ascent.audiovisuel@gmail.com" class="before:hidden flex  items-center gap-2 hover:text-green-light-ascent">
                     <svg width="23" height="18" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.967 4.42857C21.967 4.42857 17.2756 10.1429 11.5006 10.1429C5.72559 10.1429 1.03418 4.42857 1.03418 4.42857M4.73333 17H18.2667C19.5734 17 20.2269 17 20.726 16.7509C21.165 16.5318 21.522 16.1821 21.7457 15.752C22 15.2631 22 14.623 22 13.3429V4.65714C22 3.37703 22 2.73696 21.7457 2.24802C21.522 1.81793 21.165 1.46826 20.726 1.24913C20.2269 1 19.5734 1 18.2667 1H4.73333C3.42655 1 2.77315 1 2.27402 1.24913C1.83497 1.46826 1.47802 1.81793 1.25432 2.24802C1 2.73696 1 3.37702 1 4.65714V13.3429C1 14.623 1 15.2631 1.25432 15.752C1.47802 16.1821 1.83497 16.5318 2.27402 16.7509C2.77315 17 3.42654 17 4.73333 17Z" stroke="#27292F" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
