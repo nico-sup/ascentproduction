@@ -12,8 +12,8 @@ module.exports = {
               'blue-ascent' : 'var(--blue-ascent)',
             },
             fontFamily: {
-              cormorant: ['"Cormorant"', "sans-serif"],
-              barlowCondensed: ['"BarlowCondensed"', "sans-serif"],
+              cormorant: ['"Joyride"', "sans-serif"],
+              barlowCondensed: ['"Aspekta"', "sans-serif"],
           },
         }
   },

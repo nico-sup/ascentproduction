@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-2 gap-y-8 lg:grid-cols-4 container pb-11">
 
             <div>
-                <img src="/images/logo-ascent.png" class="mb-6 block max-w-28" alt="">
+                <img src="/images/logo-ascent.png" class="mb-6 block max-w-48" alt="">
                 <ul class="flex gap-4">
                     <li>
                         <NuxtLink :to="'/'">
