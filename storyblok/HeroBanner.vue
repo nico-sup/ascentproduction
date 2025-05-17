@@ -17,7 +17,7 @@
         </button>
 
         <div class="z-[1] mt-auto pt-20">
-            <h1 class="relative text-white text-center font-cormorant font-bold md:text-[2rem] uppercase mb-16">
+            <h1 class="relative text-white text-center font-cormorant font-bold text-[1rem] md:text-[2rem] uppercase mb-16">
                 {{ blok.title }} 
                 <span class="opacity-0 absolute left-0">Vidéaste professionnel à clermont-ferrand clermont</span>
             </h1>
