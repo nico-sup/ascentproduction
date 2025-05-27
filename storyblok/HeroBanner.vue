@@ -12,12 +12,12 @@
         ></video>
         
         <!-- Bouton pour activer/désactiver le son -->
-        <button @click="toggleSound" class="absolute bottom-4 right-8 z-[2] bg-black bg-opacity-50 text-white p-2 text-xl rounded-full">
+        <button @click="toggleSound" class="absolute bottom-4 right-8 z-[2] max-w-[80%] bg-black bg-opacity-50 text-white p-2 text-xl rounded-full">
             {{ isMuted ? '🔇' : '🔊' }}
         </button>
 
         <div class="z-[1] mt-auto pt-20">
-            <h1 class="relative text-white text-center font-cormorant font-bold text-[1rem] md:text-[2rem] uppercase mb-16">
+            <h1 class="relative text-white mx-auto font-cormorant text-center font-bold max-w-[80%] text-[2rem] md:text-[2rem] uppercase mb-16">
                 {{ blok.title }} 
                 <span class="opacity-0 absolute left-0">Vidéaste professionnel à clermont-ferrand clermont</span>
             </h1>

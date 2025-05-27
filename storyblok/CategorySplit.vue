@@ -25,8 +25,8 @@
         />
       </template>
 
-      <h2 class="z-[2] text-[1.7rem] uppercase">{{ blok.title }}</h2>
-      <h4 class="z-[2]">{{ blok.subtitle }}</h4>
+      <h2 class="z-[2] text-[1.3rem] uppercase">{{ blok.title }}</h2>
+      <h4 class="z-[2] text-[1rem]">{{ blok.subtitle }}</h4>
       <template v-if="isInternalLink(blok.link)">
         <NuxtLink :to="getInternalLink(blok.link)" class="absolute z-[2] top-0 left-0 h-full w-full"></NuxtLink>
       </template>
