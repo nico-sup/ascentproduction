@@ -6,9 +6,10 @@
         place-items: center;
         position: relative;
 
+
         &::before {
             content: '';
-            @apply absolute top-0 left-0 h-full w-full bg-black opacity-50 z-0;
+            @apply absolute top-0 left-0 h-full w-full bg-black opacity-35 z-[2] block;
         }
 
         img {
@@ -23,20 +24,25 @@
             grid-area: 3 / 1 / 4 / 2;
             color: var(--white);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         p {
             grid-area: 4 / 1 / 5 / 2;
             color: var(--white);
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
     }
 }
 
 .article-card {
+
+    & > div::before {
+        content: '';
+        @apply absolute h-full w-full bg-black bg-opacity-40 top-0 left-0 block z-[1];
+    }
 
     &:hover img {
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -51,7 +57,7 @@
     }
 
     h2 {
-        @apply text-2xl;
+        @apply text-2xl block z-[2];
     }
 
     &:hover h2 {
