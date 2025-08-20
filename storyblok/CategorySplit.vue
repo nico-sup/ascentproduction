@@ -31,7 +31,7 @@
         <NuxtLink :to="getInternalLink(blok.link)" class="absolute z-[2] top-0 left-0 h-full w-full"></NuxtLink>
       </template>
       <template v-else>
-        <a v-if="blok.link.url" :href="blok.link.url" class="absolute z-[2] top-0 left-0 h-full w-full" rel="noopener noreferrer"></a>
+        <a v-if="blok.link.url" :href="blok.link.url" class="absolute z-[2] top-0 left-0 h-full w-full" rel="noopener"></a>
       </template>
     </div>
   </section>

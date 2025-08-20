@@ -6,7 +6,7 @@
         </NuxtLink>
       </template>
       <template v-else>
-        <a :href="blok.link.url" target="_blank" rel="noopener noreferrer">
+        <a :href="blok.link.url" target="_blank" rel="noopener">
           <img :src="blok.image.filename" alt="">
         </a>
       </template>

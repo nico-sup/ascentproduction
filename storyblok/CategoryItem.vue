@@ -4,7 +4,7 @@
              <img v-if="blok.image" :src="blok.image.filename" :alt="blok.image.alt" class="absolute top-0 left-0 w-full h-full object-cover z-0" />
              <h2 class="z-[2] text-white uppercase">{{ blok.title }}</h2>
              <h4 class="z-[2] text-white">{{ blok.subtitle }}</h4>
-              <a :href="blok.link.url" target="_blank" rel="noopener noreferrer"></a>
+              <a :href="blok.link.url" target="_blank" rel="noopener"></a>
         </div>
      </section>
 </template>
