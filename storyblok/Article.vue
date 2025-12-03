@@ -23,6 +23,7 @@
     import HeroSplit from '~/storyblok/HeroSplit.vue';
     import List from '~/storyblok/List.vue';
     import Slider from '~/storyblok/Slider.vue';
+    import SliderImage from '~/storyblok/SliderImage.vue';
     import VideoBanner from '~/storyblok/VideoBanner.vue';
     import VideoSection from '~/storyblok/VideoSection.vue';
     import NousContacter from '~/storyblok/NousContacter.vue';
@@ -39,6 +40,7 @@
         heroSplit: HeroSplit,
         list: List,
         slider: Slider,
+        sliderImage: SliderImage,
         videoBanner: VideoBanner,
         videoSection: VideoSection,
         nousContacter: NousContacter,
