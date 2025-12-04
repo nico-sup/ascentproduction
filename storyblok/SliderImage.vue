@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <div v-editable="blok" class="slider">
+        <div v-editable="blok" class="slider_image">
             <Swiper
                 :modules="[SwiperAutoplay]"
                 :slides-per-view="2"
@@ -15,7 +15,7 @@
                     768: { slidesPerView: 3 },
                 }">
                 <SwiperSlide v-for="(imgWithLink, index) in blok.slide_image" :key="index">
-                    <ImgWithLink class="h-[50vh] md:h-[65vh]" :blok="imgWithLink" />
+                    <ImgWithLink class="min-h-[50vh] md:min-h-[65vh]" :blok="imgWithLink" />
                 </SwiperSlide>
                 </Swiper>
             </div>
