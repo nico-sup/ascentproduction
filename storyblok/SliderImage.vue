@@ -3,16 +3,13 @@
         <div v-editable="blok" class="slider_image">
             <Swiper
                 :modules="[SwiperAutoplay]"
-                :slides-per-view="2"
+                :slides-per-view="1"
                 :loop="true"
                 :space-between="10"
                 :speed="1000"
                 :autoplay="{
                     delay: 3000,
                     disableOnInteraction: false,
-                }"
-                :breakpoints="{
-                    768: { slidesPerView: 3 },
                 }">
                 <SwiperSlide v-for="(imgWithLink, index) in blok.slide_image" :key="index">
                     <ImgWithLink class="min-h-[50vh] md:min-h-[65vh]" :blok="imgWithLink" />
