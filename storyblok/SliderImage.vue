@@ -15,7 +15,7 @@
                     768: { slidesPerView: 3 },
                 }">
                 <SwiperSlide v-for="(imgWithLink, index) in blok.slide_image" :key="index">
-                    <ImgWithLink class="h-[20vh] md:h-[35vh]" :blok="imgWithLink" />
+                    <ImgWithLink class="h-[50vh] md:h-[65vh]" :blok="imgWithLink" />
                 </SwiperSlide>
                 </Swiper>
             </div>
