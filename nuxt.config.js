@@ -81,6 +81,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    // Toujours un site statique dans .output/public (sur Netlify, Nuxt choisirait sinon
+    // le preset "netlify-static" qui écrit dans dist/, d'où l'erreur de déploiement)
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: ['/', '/contact', '/sitemap.xml'],
