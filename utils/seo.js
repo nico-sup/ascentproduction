@@ -58,3 +58,17 @@ export function resolveSbLink(link) {
   if (url.startsWith('/')) return { to: url, external: false }
   return { to: url, external: /^https?:\/\//.test(url) }
 }
+
+/**
+ * Optimise les images d'un texte riche Storyblok (HTML) :
+ * redimensionnement par le CDN Storyblok + chargement différé.
+ */
+export function optimizeRichTextImages(html, size = '1200x0') {
+  if (!html || typeof html !== 'string') return html || ''
+  return html.replace(/<img\b([^>]*?)\ssrc="([^"]+)"([^>]*?)\s*\/?>/gi, (match, before, src, after) => {
+    const attrs = `${before} ${after}`
+    const lazy = /\sloading=/.test(attrs) ? '' : ' loading="lazy"'
+    const decoding = /\sdecoding=/.test(attrs) ? '' : ' decoding="async"'
+    return `<img${before} src="${sbImage(src, size)}"${after}${lazy}${decoding}>`
+  })
+}

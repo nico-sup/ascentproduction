@@ -28,7 +28,7 @@ const items = computed(() =>
             ...i,
             html: typeof i.answer === 'string'
                 ? escapeHtml(i.answer).replace(/\n/g, '<br>')
-                : renderRichText(i.answer),
+                : optimizeRichTextImages(renderRichText(i.answer)),
             text: toMetaText(i.answer, 1000),
         }))
 )

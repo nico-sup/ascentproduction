@@ -9,5 +9,6 @@
   <script setup>
   const props = defineProps({ blok: Object });
 
-  const resolvedRichText = computed(() => renderRichText(props.blok.wysiwyg));
+  // Images du texte riche redimensionnées (avant : photos chargées en pleine résolution, jusqu'à 1 Mo)
+  const resolvedRichText = computed(() => optimizeRichTextImages(renderRichText(props.blok.wysiwyg)));
   </script>

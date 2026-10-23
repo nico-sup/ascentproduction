@@ -1,16 +1,17 @@
 <template>
-    <div v-editable="blok" class="hero_banner relative flex justify-center items-center flex-col">
+    <div v-editable="blok" class="hero_banner relative flex justify-center items-center flex-col bg-black">
 
+        <!-- La vidéo n'est téléchargée qu'une fois la page affichée : le titre et le texte
+             s'affichent plus vite (LCP), surtout sur mobile. -->
         <video
           v-if="blok.asset?.filename"
-          :src="blok.asset.filename"
           ref="video"
           class="absolute top-0 left-0 h-full w-full z-0"
-          autoplay
+          :poster="blok.poster?.filename ? sbImage(blok.poster.filename, '1600x0') : undefined"
           loop
           muted
           playsinline
-          preload="metadata"
+          preload="none"
           aria-hidden="true"
         ></video>
 
@@ -44,8 +45,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-defineProps({ blok: Object });
-
 const video = ref(null);
 const isMuted = ref(true);
 let observer = null;
@@ -64,7 +63,28 @@ const handleVisibilityChange = (entries) => {
     video.value.muted = entry.isIntersecting ? isMuted.value : true;
 };
 
+const props = defineProps({ blok: Object });
+
+// Démarre le téléchargement de la vidéo après le chargement de la page
+const startVideo = () => {
+    const el = video.value;
+    const src = props.blok.asset?.filename;
+    if (!el || !src || el.getAttribute('src')) return;
+    // Économie de données activée sur le téléphone : on garde l'image d'attente
+    if (navigator.connection?.saveData) return;
+    el.src = src;
+    el.muted = true;
+    el.play?.().catch(() => {});
+};
+
+const whenIdle = (fn) => ('requestIdleCallback' in window)
+    ? window.requestIdleCallback(fn, { timeout: 2000 })
+    : window.setTimeout(fn, 200);
+
 onMounted(() => {
+    if (document.readyState === 'complete') whenIdle(startVideo);
+    else window.addEventListener('load', () => whenIdle(startVideo), { once: true });
+
     if (!video.value || !('IntersectionObserver' in window)) return;
     observer = new IntersectionObserver(handleVisibilityChange, { threshold: 0.1 });
     observer.observe(video.value);
