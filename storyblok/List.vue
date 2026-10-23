@@ -23,7 +23,7 @@ const handleMouseEnter = async (item, index, event) => {
   hoveredIndex.value = index;
 
   if (item.image?.filename) {
-    activeImage.value = item.image.filename;
+    activeImage.value = sbImage(item.image.filename, "400x0");
     showImage.value = true;
 
     await nextTick();
@@ -90,11 +90,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="container">
+  <section v-editable="blok" class="container">
     <ul class="layout-grid">
       <li
         v-for="(item, index) in blok.item"
-        :key="index"
+        :key="item._uid || index"
         @mouseenter="(event) => handleMouseEnter(item, index, event)"
         @mouseleave="handleMouseLeave"
         :class="{
@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
     </ul>
 
     <div v-if="!isMobile && showImage && activeImage" ref="imageContainer" class="hover-image">
-      <img :src="activeImage" alt="Image associée" />
+      <img :src="activeImage" alt="" />
     </div>
   </section>
 </template>

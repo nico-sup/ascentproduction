@@ -1,15 +1,17 @@
 <template>
-    <div v-editable="blok" class="article">
+    <article v-editable="blok" class="article">
         <div class="banner mb-24">
-            <img class="z-[1] rounded-none" v-if="blok.image" :src="blok.image.filename" alt="">
+            <img class="z-[1] rounded-none" v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1920x0')"
+                :alt="blok.image.alt || blok.title || ''" fetchpriority="high" decoding="async">
             <h1 v-if="blok.title">{{ blok.title }}</h1>
             <p v-if="blok.description" class="max-w-[60%] text-center">{{ blok.description }}</p>
         </div>
 
-        <div v-for="(content, index) in blok.content" :key="index">
-            <component :is="componentMap[content.component]" :blok="content"></component>
+        <div v-for="content in blok.content" :key="content._uid">
+            <component :is="componentMap[content.component]" v-if="componentMap[content.component]" :blok="content"></component>
+            <StoryblokComponent v-else :blok="content" />
         </div>
-    </div>
+    </article>
 </template>
 
 <script setup>
@@ -28,7 +30,7 @@
     import VideoSection from '~/storyblok/VideoSection.vue';
     import NousContacter from '~/storyblok/NousContacter.vue';
     import Activities from '~/storyblok/Activities.vue';
-    
+
     const componentMap = {
         category: Category,
         video: Video,
@@ -48,4 +50,4 @@
     };
 
     defineProps({ blok: Object });
-</script>   
+</script>

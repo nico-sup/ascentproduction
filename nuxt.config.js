@@ -1,21 +1,32 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fetchStoryblokRoutes } from './scripts/storyblok-routes.mjs'
+
+const SITE_URL = 'https://ascentproduction.fr'
+
+// Version du contenu Storyblok servie au public.
+// En production : "published". Pour un déploiement de prévisualisation : STORYBLOK_VERSION=draft
+const STORYBLOK_VERSION = process.env.STORYBLOK_VERSION === 'draft' ? 'draft' : 'published'
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  postcss: {
-    plugins: {
-      'postcss-nested': {},
-    }
-  },
-  
+
+  // SSR activé : chaque page est pré-générée en HTML (nuxt generate).
+  // Google et les moteurs IA (ChatGPT, Perplexity, Claude…) lisent enfin le contenu.
+  ssr: true,
+
   app: {
     head: {
-      title: "Production Vidéo, Drone, photographe, montage et création de site internet, Clermont-Ferrand, Auvergne - Ascent Production",
+      htmlAttrs: { lang: 'fr' },
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { name: "description", content: "Experts en production vidéo basé à Clermont-Ferrand en Auvergne, photographie professionnelle, captation drone et création de sites internet. Nous vous accompagnons dans la réalisation de vidéos créatives, de prises de vue aériennes spectaculaires, ainsi que dans la création de sites web sur mesure qui mettent en valeur votre entreprise. Que ce soit pour des événements, des films d'entreprise, des vidéos publicitaires ou la conception d'un site performant et responsive, notre équipe utilise des outils de pointe pour offrir des solutions visuelles et digitales qui répondent parfaitement à vos besoins."  },
-        { name: "keywords", content: "production vidéo, drone, photographie, montage, auvergne, puy de dome, vidéo 4K, films entreprises, création site internet, développeur web, événementiel, drone fpv, podcast" },
-        { name: "author", content: "Ascent Production" },
-        { name: "google-site-verification", content:"8DLnBD6HRkhCIPw4ayfGnoY0gJ2RFZV2ySR7BJAETew"}
+        { name: 'author', content: 'Ascent Production' },
+        { name: 'theme-color', content: '#344e41' },
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'google-site-verification', content: '8DLnBD6HRkhCIPw4ayfGnoY0gJ2RFZV2ySR7BJAETew' },
+        { property: 'og:site_name', content: 'Ascent Production' },
+        { property: 'og:locale', content: 'fr_FR' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -23,77 +34,79 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'stylesheet', href: 'https://assets.calendly.com/assets/external/widget.css' },
-      ],
-      script: [
-        {
-          src: "https://assets.calendly.com/assets/external/widget.js",
-          type: "text/javascript",
-          async: true,
-        },
-        {
-          innerHTML: `
-            window.onload = function() { 
-              Calendly.initBadgeWidget({ 
-                url: 'https://calendly.com/ascent-audiovisuel/parlons-de-votre-projet', 
-                text: 'On se rencontre ?', 
-                color: '#8aba9c', 
-                textColor: '#ffffff' 
-              }); 
-            }
-          `,
-          type: "text/javascript",
-        },
+        // Polices principales préchargées (évite le saut de texte au chargement)
+        { rel: 'preload', href: '/font/Aspekta-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+        { rel: 'preload', href: '/font/JoyrideEXTItalic.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+        { rel: 'preconnect', href: 'https://a.storyblok.com' },
+        // Fichier de présentation pour les moteurs IA
+        { rel: 'alternate', type: 'text/markdown', href: '/llms.txt', title: 'Ascent Production – résumé pour les IA' },
       ],
     },
   },
 
-
-
+  runtimeConfig: {
+    public: {
+      siteUrl: SITE_URL,
+      storyblokVersion: STORYBLOK_VERSION,
+    },
+  },
 
   alias: {
-    assets: "/<rootDir>/assets",
-    '@storyblok/nuxt': require.resolve('@storyblok/nuxt')
+    '@storyblok/nuxt': require.resolve('@storyblok/nuxt'),
   },
 
   modules: [
-    ["@storyblok/nuxt", { accessToken: process.env.STORYBLOK_TOKEN}],
+    // Le token n'est plus écrit en dur : il vient de la variable d'environnement STORYBLOK_TOKEN
+    ['@storyblok/nuxt', { accessToken: process.env.STORYBLOK_TOKEN }],
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
-    'nuxt-lazy-load',
     'nuxt-aos',
     '@nuxtjs/sitemap',
-    "@cheers-io/nuxt-storyblok-sitemap",
   ],
 
-  sitemap: {
-    hostname: 'https://ascentproduction.fr',
-    routes: async () => {
-      const storyblokApi = 'https://api.storyblok.com/v2/cdn/stories';
-      const token = 'nwHe9gnH4kvEKc1DtbXK8wtt'; 
-
-      const response = await fetch(`${storyblokApi}?token=${token}&version=published`);
-      const { stories } = await response.json();
-
-      return stories.map(story => `/${story.full_slug}`);
-    }
+  site: {
+    url: SITE_URL,
+    name: 'Ascent Production',
+    defaultLocale: 'fr',
   },
 
-    storyblokSitemap: {
-      accessToken: process.env.STORYBLOK_TOKEN,
-      baseUrl: 'https://ascentproduction.fr',
+  sitemap: {
+    autoLastmod: true,
+    // Toutes les pages publiées dans Storyblok (avec leur date de mise à jour)
+    urls: async () => {
+      const routes = await fetchStoryblokRoutes({ token: process.env.STORYBLOK_TOKEN })
+      return routes.map(r => ({ loc: r.path, lastmod: r.lastmod }))
+    },
+    exclude: ['/404', '/200'],
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/contact', '/sitemap.xml'],
+      failOnError: false,
+    },
+  },
+
+  hooks: {
+    // Pré-génère aussi les pages Storyblok qui ne sont liées nulle part
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) return
+      const routes = await fetchStoryblokRoutes({ token: process.env.STORYBLOK_TOKEN })
+      nitroConfig.prerender = nitroConfig.prerender || {}
+      nitroConfig.prerender.routes = [...(nitroConfig.prerender.routes || []), ...routes.map(r => r.path)]
+    },
   },
 
   css: ['~/assets/main.scss', 'aos/dist/aos.css', 'swiper/css/pagination'],
-  ssr: false,
 
   aos: {
-    offset: 120, // Ajustez pour un déclenchement plus sensible
+    offset: 120,
     delay: 0,
     duration: 1700,
     easing: 'ease',
-    once: false, // Permet les répétitions
-    mirror: true, // Active l'animation au scroll vers le haut
-    anchorPlacement: 'top-bottom', 
+    once: false,
+    mirror: true,
+    anchorPlacement: 'top-bottom',
   },
 })

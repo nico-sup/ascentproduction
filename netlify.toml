@@ -1,0 +1,37 @@
+# Configuration Netlify – site pré-généré (SSG)
+[build]
+  command = "npm run generate"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # À définir dans Netlify > Site configuration > Environment variables :
+  #   STORYBLOK_TOKEN = jeton "Public" de l'espace Storyblok (jamais le jeton "Preview" en production)
+
+# En-têtes de sécurité appliqués à toutes les pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    # Le site ne peut être intégré dans une iframe que par lui-même et par l'éditeur visuel Storyblok
+    Content-Security-Policy = "frame-ancestors 'self' https://app.storyblok.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+    Strict-Transport-Security = "max-age=31536000"
+
+# Fichiers JS/CSS versionnés : cache long
+[[headers]]
+  for = "/_nuxt/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/font/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"

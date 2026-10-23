@@ -6,13 +6,13 @@
         </div>
         <div class="col-span-full md:col-span-10">
             <ul>
-                <li v-for="(item, index) in blok.items" :key="index">
+                <li v-for="(item, index) in blok.items" :key="item._uid || index">
                     <CategoryItem :blok="item" />
                 </li>
             </ul>
         </div>
         <div class="col-span-full text-right" v-if="blok.link">
-            <NuxtLink class=" button" :to="'/projects'">Explorer les projets</NuxtLink>
+            <NuxtLink class="button" to="/projects">Explorer les projets</NuxtLink>
         </div>
     </section>
 

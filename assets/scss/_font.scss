@@ -1,29 +1,30 @@
+// WOFF2 (3x plus léger) avec repli sur les fichiers d'origine.
+// Attention à la casse des noms : le serveur de production (Linux) la respecte.
 @font-face {
     font-family: 'Aspekta';
-    src: url('/font/Aspekta-400.ttf');
+    src: url('/font/Aspekta-400.woff2') format('woff2'), url('/font/Aspekta-400.ttf') format('truetype');
     font-display: swap;
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Aspekta';
-    src: url('/font/Aspekta-500.ttf');
+    src: url('/font/Aspekta-500.woff2') format('woff2'), url('/font/Aspekta-500.ttf') format('truetype');
     font-display: swap;
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Aspekta';
-    src: url('/font/Aspekta-700.ttf');
+    src: url('/font/Aspekta-700.woff2') format('woff2'), url('/font/Aspekta-700.ttf') format('truetype');
     font-display: swap;
     font-weight: 700;
 }
 
 @font-face {
     font-family: 'Joyride';
-    src: url('/font/JoyrideEXTITALIC.otf');
+    src: url('/font/JoyrideEXTItalic.woff2') format('woff2'), url('/font/JoyrideEXTItalic.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
-

@@ -1,5 +1,5 @@
 <template>
-    <section v-editable="blok" class="container layout-grid">
+    <section v-editable="blok" class="container layout-grid"> 
         <div class="place-content-center col-span-full">
             <span data-aos="fade-right">{{ blok.tag }}</span>
             <h2 class="text-green-light-ascent" data-aos="fade-right">{{ blok.title }}</h2>

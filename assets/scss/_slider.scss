@@ -1,5 +1,5 @@
 .slider {
-    a {
+    a, .img-link-wrap {
         @apply h-full w-full relative block;
         img {
             @apply h-full w-[80%] md:w-[10vw] mx-auto object-contain;

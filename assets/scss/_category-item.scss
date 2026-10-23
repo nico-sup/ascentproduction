@@ -5,7 +5,7 @@
         @apply block absolute top-0 left-0 w-full h-full bg-black opacity-20 z-[1] rounded-xl;
     }
 
-    h2::after {
+    h3::after {
         content: '';
         @apply block h-[2px] w-5 bg-white mt-1;
     }
@@ -21,7 +21,7 @@
         transition: all 0.4s ease-in;
     }
     
-    h2 {
+    h3 {
         @apply underline;
     }
 }

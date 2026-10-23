@@ -1,72 +1,81 @@
 <template>
-    <section class="mansory container">
+    <section v-editable="blok" class="mansory container">
         <ul>
-             <li v-for="(asset, index) in blok.images" :key="index" class="image-wrapper">
-                 <img :src="asset.filename" :alt="'Image ' + (index + 1)" @click="openLightbox(index)" class="object-cover h-full w-full"   data-aos="zoom-in" :data-aos-delay="index * 150"/>
+             <li v-for="(asset, index) in blok.images" :key="asset.id || index" class="image-wrapper">
+                 <button type="button" class="block w-full" @click="openLightbox(index)"
+                    :aria-label="`Agrandir l'image ${index + 1}${asset.alt ? ' : ' + asset.alt : ''}`">
+                    <img :src="sbImage(asset.filename, '800x0')" :alt="asset.alt || ''" class="object-cover h-full w-full"
+                        loading="lazy" decoding="async" data-aos="zoom-in" :data-aos-delay="(index % 8) * 150" />
+                 </button>
              </li>
         </ul>
 
-        <div v-if="lightboxVisible" class="lightbox" @click="closeLightbox" tabindex="0" @keydown="handleKeyPress" >
-                 <Swiper 
+        <div v-if="lightboxVisible" ref="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galerie d'images"
+            tabindex="-1" @click.self="closeLightbox" @keydown="handleKeyPress">
+                 <button type="button" class="lightbox-close" @click="closeLightbox" aria-label="Fermer la galerie">
+                    <svg width="32" height="32" viewBox="-0.5 0 25 25" fill="none" aria-hidden="true">
+                        <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                 </button>
+                 <Swiper
                      :initialSlide="selectedImageIndex"
                      :slides-per-view="1"
                      :loop="true"
                      @swiper="onSwiperUpdate"
                  >
-                     <SwiperSlide v-for="(asset, index) in blok.images" :key="index">
-                         <img :src="asset.filename" :alt="'Image ' + (index + 1)" />
+                     <SwiperSlide v-for="(asset, index) in blok.images" :key="asset.id || index" @click.self="closeLightbox">
+                         <img :src="sbImage(asset.filename, '1920x0')" :alt="asset.alt || ''" decoding="async" />
                      </SwiperSlide>
-                     <div ref="prevButton" class="swiper-button-prev"  @click.stop="prevImage"></div>
-                     <div ref="nextButton" class="swiper-button-next"  @click.stop="nextImage"></div>
+                     <button type="button" class="swiper-button-prev" @click.stop="prevImage" aria-label="Image précédente"></button>
+                     <button type="button" class="swiper-button-next" @click.stop="nextImage" aria-label="Image suivante"></button>
                  </Swiper>
              </div>
     </section>
 </template>
 <script setup>
-    import { ref } from 'vue';
+    import { ref, nextTick } from 'vue';
 
     defineProps({ blok: Object });
 
     const lightboxVisible = ref(false);
     const selectedImageIndex = ref(0);
-    let swiperInstance;
-    const prevButton = ref(null);
-    const nextButton = ref(null);
+    const lightbox = ref(null);
+    let swiperInstance = null;
 
-    const openLightbox = (index) => {
+    const openLightbox = async (index) => {
         selectedImageIndex.value = index;
         lightboxVisible.value = true;
+        await nextTick();
+        lightbox.value?.focus(); // permet la navigation au clavier immédiatement
     };
 
     const closeLightbox = () => {
         lightboxVisible.value = false;
+        swiperInstance = null;
     };
 
     const onSwiperUpdate = (swiper) => {
         swiperInstance = swiper;
     };
 
+    // realIndex (et non activeIndex) car le mode "loop" duplique les slides
     const prevImage = () => {
-        if (swiperInstance) {
-            swiperInstance.slidePrev();
-            selectedImageIndex.value = swiperInstance.activeIndex;
-        }
+        if (!swiperInstance) return;
+        swiperInstance.slidePrev();
+        selectedImageIndex.value = swiperInstance.realIndex;
     };
 
     const nextImage = () => {
-        if (swiperInstance) {
-            swiperInstance.slideNext();
-            selectedImageIndex.value = swiperInstance.activeIndex;
-        }
+        if (!swiperInstance) return;
+        swiperInstance.slideNext();
+        selectedImageIndex.value = swiperInstance.realIndex;
     };
 
     const handleKeyPress = (event) => {
-        if (event.key === 'ArrowLeft') {
-            prevImage();
-        } else if (event.key === 'ArrowRight') {
-            nextImage();
-        }
-    }
+        if (event.key === 'ArrowLeft') prevImage();
+        else if (event.key === 'ArrowRight') nextImage();
+        else if (event.key === 'Escape') closeLightbox();
+    };
 </script>
 
 
@@ -84,17 +93,21 @@
         z-index: 1000;
     }
 
-    .lightbox::after {
-        content: "";
+    .lightbox-close {
         position: absolute;
         top: 1rem;
         right: 1rem;
         height: 3rem;
         width: 3rem;
-        background-image: url('/images/icons/close-white.svg');
-        background-size: contain;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
     }
 
+    .lightbox .swiper {
+        width: 100%;
+    }
 
     .lightbox .swiper-slide {
         height: auto;

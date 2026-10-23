@@ -1,28 +1,17 @@
 <template>
     <div v-editable="blok" class="h-full">
-      <template v-if="isInternalLink(blok.link)">
-        <NuxtLink :to="getInternalLink(blok.link)">
-          <img :src="blok.image.filename" alt="">
-        </NuxtLink>
-      </template>
-      <template v-else>
-        <a :href="blok.link.url" target="_blank" rel="noopener">
-          <img :src="blok.image.filename" alt="">
-        </a>
-      </template>
+      <SbLink v-if="hasLink" :link="blok.link">
+        <img :src="sbImage(blok.image?.filename, size)" :alt="blok.image?.alt || blok.image?.title || 'Référence client'"
+          loading="lazy" decoding="async">
+      </SbLink>
+      <span v-else-if="blok.image?.filename" class="img-link-wrap">
+        <img :src="sbImage(blok.image.filename, size)"
+          :alt="blok.image?.alt || blok.image?.title || 'Référence client'" loading="lazy" decoding="async">
+      </span>
     </div>
   </template>
-  
+
   <script setup>
-  
- defineProps({ blok: Object })
-  
-  function isInternalLink(link) {
-    return link.linktype === 'story';
-  }
-  
-  function getInternalLink(link) {
-    return `/${link.cached_url}`;
-  }
+  const props = defineProps({ blok: Object, size: { type: String, default: '800x0' } })
+  const hasLink = computed(() => !!resolveSbLink(props.blok.link).to)
   </script>
-  

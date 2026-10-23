@@ -1,0 +1,39 @@
+# Ascent Production
+
+> Ascent Production (Ascent Prod) est une société de production audiovisuelle basée à Clermont-Ferrand, dans le Puy-de-Dôme (Auvergne, France). Elle réalise des films d'entreprise, des vidéos publicitaires, des captations d'événements, des prises de vue aériennes par drone (dont drone FPV), de la photographie professionnelle, du montage vidéo, des podcasts et des sites internet sur mesure. Elle intervient à Clermont-Ferrand, en Auvergne-Rhône-Alpes et partout en France.
+
+Slogan : « Rise. Capture. Inspire. »
+
+## Coordonnées
+
+- Site : https://ascentproduction.fr
+- Téléphone : +33 6 44 05 69 92
+- E-mail : ascent.audiovisuel@gmail.com
+- Localisation : 63000 Clermont-Ferrand, Puy-de-Dôme, Auvergne-Rhône-Alpes, France
+- Zone d'intervention : Clermont-Ferrand, Puy-de-Dôme, Auvergne et toute la France
+- Prise de rendez-vous : https://calendly.com/ascent-audiovisuel/parlons-de-votre-projet
+
+## Services
+
+- Production vidéo : films d'entreprise, vidéos institutionnelles, publicités, contenus pour les réseaux sociaux
+- Captation événementielle : événements, conférences, salons, spectacles
+- Prises de vue aériennes par drone, dont drone FPV
+- Photographie professionnelle : entreprise, produits, événements, lieux
+- Montage et post-production : montage, étalonnage, habillage graphique, sound design
+- Podcast : enregistrement et production audio et vidéo
+- Création de sites internet : sites vitrines sur mesure, rapides et optimisés pour le référencement
+
+## Pages principales
+
+- [Accueil](https://ascentproduction.fr/) : présentation d'Ascent Production
+- [Production audiovisuelle](https://ascentproduction.fr/production-audiovisuelle) : offre vidéo, drone et photo
+- [Création de site internet](https://ascentproduction.fr/site-internet) : offre web
+- [Nos expertises](https://ascentproduction.fr/nos-expertises) : savoir-faire et types de projets
+- [Nos réalisations](https://ascentproduction.fr/projects) : portfolio de projets vidéo et photo
+- [Contact et devis](https://ascentproduction.fr/contact) : formulaire, téléphone et e-mail
+
+## Optional
+
+- [Plan du site](https://ascentproduction.fr/sitemap.xml)
+- [Mentions légales](https://ascentproduction.fr/mentions-legales)
+- [Politique de confidentialité](https://ascentproduction.fr/politique-de-confidentialite)

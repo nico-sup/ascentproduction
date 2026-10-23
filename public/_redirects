@@ -1,1 +1,4 @@
-/*    /index.html   200
+# Le site est désormais pré-généré (une page HTML par URL) : plus besoin de
+# rediriger toutes les URL vers /index.html. Les URL inconnues affichent la page 404.
+# Ajoutez ici d'éventuelles redirections 301, par exemple :
+# /ancienne-page   /nouvelle-page   301

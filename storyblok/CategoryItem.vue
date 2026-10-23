@@ -1,10 +1,11 @@
 <template>
      <section v-editable="blok" class="category-item my-4" data-aos="fade-up" data-aos-mirror="true">
         <div class="h-[25rem] flex flex-col justify-center px-4 relative">
-             <img v-if="blok.image" :src="blok.image.filename" :alt="blok.image.alt" class="absolute top-0 left-0 w-full h-full object-cover z-0" />
-             <h2 class="z-[2] text-white uppercase">{{ blok.title }}</h2>
-             <h4 class="z-[2] text-white">{{ blok.subtitle }}</h4>
-              <a :href="blok.link.url" target="_blank" rel="noopener"></a>
+             <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1600x0')" :alt="blok.image.alt || blok.title || ''"
+                class="absolute top-0 left-0 w-full h-full object-cover z-0" loading="lazy" decoding="async" />
+             <h3 class="z-[2] text-white uppercase text-3xl">{{ blok.title }}</h3>
+             <p class="z-[2] text-white text-2xl mt-0 mb-4">{{ blok.subtitle }}</p>
+             <SbLink :link="blok.link" :aria-label="blok.title" />
         </div>
      </section>
 </template>

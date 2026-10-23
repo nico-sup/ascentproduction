@@ -1,7 +1,7 @@
 <template>
-    <section class="container">
+    <section v-editable="blok" class="container">
         <h2 class="text-center mb-7">Ils nous ont fait confiance</h2>
-        <div v-editable="blok" class="slider">
+        <div class="slider">
             <Swiper
                 :modules="[SwiperAutoplay]"
                 :slides-per-view="3"
@@ -15,7 +15,7 @@
                 :breakpoints="{
                     768: { slidesPerView: 4 },
                 }">
-                <SwiperSlide v-for="(imgWithLink, index) in blok.slide" :key="index">
+                <SwiperSlide v-for="(imgWithLink, index) in blok.slide" :key="imgWithLink._uid || index">
                     <ImgWithLink class="h-[20vh] md:h-[35vh]" :blok="imgWithLink" />
                 </SwiperSlide>
                 </Swiper>

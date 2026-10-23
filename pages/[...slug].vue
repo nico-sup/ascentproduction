@@ -1,32 +1,24 @@
 <template>
   <StoryblokComponent v-if="story" :blok="story.content" />
-  <div v-else>
-    <!-- Ici, on peut afficher un message ou rediriger vers la page 404 si la story est introuvable -->
-    <p>Cette page est introuvable.</p>
-  </div>
 </template>
 
 <script setup>
-import { useRoute, useError } from 'nuxt/app' // On importe la fonction useError pour gérer l'erreur
+const route = useRoute()
+const config = useRuntimeConfig()
 
-const { slug } = useRoute().params
-const error = useError() // Cette fonction permet de déclencher une erreur
+const slugParam = route.params.slug
+const slug = Array.isArray(slugParam) && slugParam.length ? slugParam.join('/') : 'home'
 
-let story = null
+// Les brouillons ne sont chargés que dans l'éditeur visuel Storyblok (?_storyblok=…)
+// ou sur un déploiement de prévisualisation (STORYBLOK_VERSION=draft).
+const version = route.query._storyblok ? 'draft' : config.public.storyblokVersion
 
-// Vérification si le slug est valide et récupération de la story
-try {
-  story = await useAsyncStoryblok(
-    slug && slug.length > 0 ? slug.join('/') : 'home',
-    { version: 'draft' }
-  )
+const story = await useAsyncStoryblok(slug, { version })
 
-  // Si la story n'existe pas, on force l'affichage de la page 404
-  if (!story) {
-    error({ statusCode: 404, message: "Page non trouvée" })
-  }
-} catch (e) {
-  // En cas d'erreur (ex: pas de story pour ce slug), on redirige vers 404
-  error({ statusCode: 404, message: "Page non trouvée" })
+if (!story.value) {
+  // Vraie erreur 404 (avant : la page renvoyait "200 OK" avec un texte d'erreur)
+  throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
 }
+
+useStorySeo(story)
 </script>

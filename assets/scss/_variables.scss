@@ -36,6 +36,7 @@ img, video {
 }
 
 .calendly-badge-widget {
+    display: none;
     left: 20px;
     bottom: 20px;
     right: auto;
@@ -44,4 +45,56 @@ img, video {
 
 .calendly-badge-widget .calendly-badge-content {
     @apply rounded-xl;
+}
+/* Badge Calendly visible après un écran de défilement (géré par Footer.vue) */
+html.show-floating .calendly-badge-widget {
+    display: block;
+}
+
+/* Lien d'évitement pour la navigation au clavier */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    @apply bg-white text-black px-4 py-2 rounded-xl;
+    &:focus {
+        left: 1rem;
+        top: 1rem;
+    }
+}
+
+.footer-title {
+    @apply text-2xl mb-4 mt-0;
+}
+
+/* Champ piège anti-spam du formulaire de contact */
+.hp-field {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* FAQ */
+.faq-list {
+    @apply border-t border-black;
+}
+.faq-item {
+    @apply border-b border-black py-5;
+    summary {
+        @apply cursor-pointer text-xl font-bold list-none flex justify-between gap-4;
+        &::-webkit-details-marker { display: none; }
+        &::after {
+            content: '+';
+            @apply text-green-light-ascent text-2xl leading-none;
+        }
+    }
+    &[open] summary::after {
+        content: '–';
+    }
+    .faq-answer {
+        @apply pt-3 max-w-4xl;
+    }
 }
