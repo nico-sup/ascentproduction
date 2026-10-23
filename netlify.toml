@@ -1,7 +1,7 @@
 # Configuration Netlify – site pré-généré (SSG)
 [build]
   command = "npm run generate"
-  publish = ".output/public"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
