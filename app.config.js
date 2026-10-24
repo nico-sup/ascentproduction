@@ -8,7 +8,7 @@ export default defineAppConfig({
     defaultTitle: 'Ascent Production – Production audiovisuelle, vidéo & drone à Clermont-Ferrand',
     // ~155 caractères max : c'est la description affichée par Google
     description:
-      "Production audiovisuelle à Clermont-Ferrand (Auvergne) : films d'entreprise, publicité, événementiel, drone, photo, montage et sites web. Partout en France.",
+      "Production audiovisuelle à Clermont-Ferrand (Auvergne) : films d'entreprise, publicité, événementiel, prises de vue drone, photo et montage. Partout en France.",
     ogImage: '/images/logo-ascent-1200.png',
     logo: '/images/logo-ascent-1200.png',
 
@@ -31,7 +31,6 @@ export default defineAppConfig({
       { name: 'Photographie professionnelle', description: "Photos d'entreprise, de produits, d'événements et de lieux." },
       { name: 'Montage et post-production', description: 'Montage, étalonnage, habillage graphique et sound design.' },
       { name: 'Podcast', description: 'Enregistrement et production de podcasts audio et vidéo.' },
-      { name: 'Création de sites internet', description: 'Sites vitrines sur mesure, rapides et optimisés pour le référencement.' },
     ],
 
     // Renseigne tes liens (laisser vide = icône masquée)

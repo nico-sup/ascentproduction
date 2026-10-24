@@ -6,8 +6,8 @@
             <p class="page-hero-aside lede m-0">Ascent Production, production audiovisuelle et drone à Clermont-Ferrand.</p>
         </div>
         <p class="max-w-3xl mb-14 split-body">
-            Un projet de film d'entreprise, de vidéo publicitaire, de captation d'événement, de prise de vue par drone
-            ou de site internet ? Décrivez-le nous : nous vous répondons rapidement. Basés à Clermont-Ferrand (Puy-de-Dôme),
+            Un projet de film d'entreprise, de vidéo publicitaire, de captation d'événement
+            ou de prise de vue par drone ? Décrivez-le nous : nous vous répondons rapidement. Basés à Clermont-Ferrand (Puy-de-Dôme),
             nous intervenons en Auvergne et partout en France.
         </p>
 
@@ -195,9 +195,9 @@ async function submitForm() {
 
 useSeoMeta({
     title: 'Contact & devis – Production vidéo à Clermont-Ferrand',
-    description: `Contactez Ascent Production pour votre projet vidéo, drone, photo ou site internet à Clermont-Ferrand et en Auvergne. Téléphone : ${site.phone}.`,
+    description: `Contactez Ascent Production pour votre projet vidéo, drone ou photo à Clermont-Ferrand et en Auvergne. Téléphone : ${site.phone}.`,
     ogTitle: 'Contact – Ascent Production, production audiovisuelle à Clermont-Ferrand',
-    ogDescription: 'Un projet vidéo, drone, photo ou site internet ? Parlons-en.',
+    ogDescription: 'Un projet vidéo, drone ou photo ? Parlons-en.',
     ogImage: `${site.url}${site.ogImage}`,
     ogUrl: `${site.url}/contact`,
     ogType: 'website',

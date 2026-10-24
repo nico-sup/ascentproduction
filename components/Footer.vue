@@ -19,8 +19,8 @@
                     <!-- Présentation factuelle : utile aux visiteurs, à Google et aux moteurs IA -->
                     <p class="text-sm max-w-sm" style="color: var(--grey-ascent)">
                         Ascent Production est une société de production audiovisuelle basée à Clermont-Ferrand,
-                        en Auvergne : films d'entreprise, publicité, événementiel, drone, photographie,
-                        montage et création de sites internet. Interventions partout en France.
+                        en Auvergne : films d'entreprise, publicité, événementiel, prises de vue drone,
+                        photographie et montage vidéo. Interventions partout en France.
                     </p>
                     <ul v-if="socialLinks.length" class="flex gap-2 mt-4">
                         <li v-for="s in socialLinks" :key="s.key">
@@ -51,7 +51,6 @@
                         <li><NuxtLink class="link-line" to="/projects">Nos réalisations</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/nos-expertises">Nos expertises</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/production-audiovisuelle">Production audiovisuelle</NuxtLink></li>
-                        <li><NuxtLink class="link-line" to="/site-internet">Création de site internet</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/nos-tarifs">Nos tarifs</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/contact">Contact</NuxtLink></li>
                     </ul>

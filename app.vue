@@ -50,7 +50,7 @@ const organization = {
     knowsAbout: [
         'Production audiovisuelle', 'Vidéo d\'entreprise', 'Vidéo publicitaire', 'Captation événementielle',
         'Drone', 'Drone FPV', 'Prise de vue aérienne', 'Photographie professionnelle',
-        'Montage vidéo', 'Post-production', 'Podcast', 'Création de sites internet',
+        'Montage vidéo', 'Post-production', 'Podcast', 'Rolling shot',
     ],
     contactPoint: {
         '@type': 'ContactPoint',

@@ -30,6 +30,10 @@
 // Expertises : trois colonnes portrait
 .expertise-grid {
     @apply grid gap-x-6 gap-y-12 md:grid-cols-3;
+
+    &.is-two {
+        @apply md:grid-cols-2;
+    }
 }
 
 .category-split-media {
@@ -59,6 +63,10 @@
 // Activités : colonnes séparées par un trait
 .activities-grid {
     @apply grid gap-10 md:grid-cols-3;
+
+    &.is-two {
+        @apply md:grid-cols-2;
+    }
 }
 
 .activity {

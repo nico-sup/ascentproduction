@@ -2,3 +2,6 @@
 # rediriger toutes les URL vers /index.html. Les URL inconnues affichent la page 404.
 # Ajoutez ici d'éventuelles redirections 301, par exemple :
 # /ancienne-page   /nouvelle-page   301
+
+# La création de sites internet ne fait plus partie des services
+/site-internet   /production-audiovisuelle   301
