@@ -1,22 +1,22 @@
 <template>
     <section v-editable="blok" class="container">
-        <h2 class="text-center mb-7">Ils nous ont fait confiance</h2>
+        <h2 v-reveal class="mb-12">Ils nous ont fait confiance</h2>
         <div class="slider">
             <Swiper
                 :modules="[SwiperAutoplay]"
                 :slides-per-view="3"
                 :loop="true"
-                :space-between="10"
+                :space-between="24"
                 :speed="1000"
                 :autoplay="{
                     delay: 3000,
                     disableOnInteraction: false,
                 }"
                 :breakpoints="{
-                    768: { slidesPerView: 4 },
+                    768: { slidesPerView: 5 },
                 }">
                 <SwiperSlide v-for="(imgWithLink, index) in blok.slide" :key="imgWithLink._uid || index">
-                    <ImgWithLink class="h-[20vh] md:h-[35vh]" :blok="imgWithLink" />
+                    <ImgWithLink class="h-[14vh] md:h-[20vh]" :blok="imgWithLink" />
                 </SwiperSlide>
                 </Swiper>
             </div>

@@ -1,27 +1,185 @@
-.navigation {
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
-    nav a,
-    nav button {
-        @apply text-3xl font-bold;
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    transition: transform 0.6s var(--ease-out), background-color 0.4s ease, box-shadow 0.4s ease;
+
+    &.is-scrolled {
+        background: rgba(251, 248, 242, 0.94);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 1px 0 var(--stone);
     }
 
-    .level_0 {
-        @apply hidden;
+    &.is-tucked {
+        transform: translateY(-100%);
     }
 
-    .level_0.header-active {
-        @apply flex fixed h-full w-screen bg-white top-0 left-0 p-5;
+    &.is-open {
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+}
 
-        ol a {
-            @apply text-black-ascent text-3xl;
-            &:hover {
-                @apply text-green-light-ascent;
-            }
+.site-header-bar {
+    position: relative;
+    z-index: 2;
+    height: var(--header-h);
+    @apply flex items-center justify-between;
+}
+
+.site-logo img {
+    height: 2.25rem;
+    width: auto;
+}
+
+.menu-toggle {
+    @apply inline-flex items-center gap-3;
+}
+
+.menu-toggle-icon {
+    position: relative;
+    width: 22px;
+    height: 10px;
+
+    span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transition: transform 0.5s var(--ease-out), top 0.5s var(--ease-out);
+    }
+    span:first-child { top: 0; }
+    span:last-child { top: 9px; }
+}
+
+.is-open .menu-toggle-icon {
+    span:first-child { top: 4.5px; transform: rotate(45deg); }
+    span:last-child { top: 4.5px; transform: rotate(-45deg); }
+}
+
+// Menu plein écran
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: var(--paper);
+    overflow-y: auto;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.8s var(--ease-out);
+    visibility: hidden;
+
+    &.is-open {
+        clip-path: inset(0 0 0 0);
+        visibility: visible;
+    }
+}
+
+.menu-overlay-inner {
+    min-height: 100%;
+    padding-top: calc(var(--header-h) + 4vh);
+    padding-bottom: 6vh;
+    @apply grid gap-12 md:grid-cols-12 content-between md:content-end;
+}
+
+.menu-links {
+    @apply md:col-span-8;
+
+    li {
+        overflow: hidden;
+    }
+
+    a {
+        display: block;
+        font-family: 'Cormorant', Georgia, serif;
+        font-weight: 300;
+        font-size: clamp(2.4rem, 5.6vw, 5.2rem);
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+
+        span {
+            display: inline-block;
+            transform: translateY(105%);
+            transition: transform 0.9s var(--ease-out), color 0.3s ease;
+            transition-delay: calc(0.12s + var(--i, 0) * 0.05s);
         }
 
-    }
+        &:hover span {
+            color: var(--moss);
+        }
 
-    &.is-sticky {
-        background: var(--green-ascent);
+        &.router-link-exact-active span {
+            color: var(--moss-text);
+        }
+    }
+}
+
+.menu-overlay.is-open .menu-links a span {
+    transform: none;
+}
+
+.menu-aside {
+    @apply md:col-span-4 md:self-end;
+}
+
+// ─── Pied de page ───
+.site-footer {
+    border-top: 1px solid var(--basalt);
+    @apply mt-24 md:mt-36 pt-16 md:pt-24;
+}
+
+.footer-cta {
+    @apply pb-16 md:pb-24;
+}
+
+.footer-cta-link {
+    display: block;
+    width: fit-content;
+    font-family: 'Cormorant', Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 9vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    transition: color 0.4s ease;
+
+    &:hover {
+        color: var(--moss);
+    }
+}
+
+.footer-mail {
+    display: inline-block;
+    @apply mt-8 text-lg;
+}
+
+.footer-grid {
+    border-top: 1px solid var(--stone);
+    @apply grid gap-10 md:grid-cols-12 py-12;
+}
+
+.footer-nav {
+    @apply grid gap-2 text-sm sm:grid-cols-2;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--stone);
+    color: var(--grey-ascent);
+    @apply flex flex-col md:flex-row justify-between gap-4 py-6 text-sm md:pr-20;
+}
+
+.to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 20;
+    @apply flex items-center justify-center w-12 h-12 rounded-full;
+    background: var(--basalt);
+    color: var(--paper);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: var(--moss);
     }
 }

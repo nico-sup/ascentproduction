@@ -2,15 +2,15 @@
     <section v-editable="blok" class="mansory container">
         <ul>
              <li v-for="(asset, index) in blok.images" :key="asset.id || index" class="image-wrapper">
-                 <button type="button" class="block w-full" @click="openLightbox(index)"
+                 <button type="button" class="block w-full media-zoom" @click="openLightbox(index)"
                     :aria-label="`Agrandir l'image ${index + 1}${asset.alt ? ' : ' + asset.alt : ''}`">
                     <img :src="sbImage(asset.filename, '800x0')" :alt="asset.alt || ''" class="object-cover h-full w-full"
-                        loading="lazy" decoding="async" data-aos="zoom-in" :data-aos-delay="(index % 8) * 150" />
+                        loading="lazy" decoding="async" />
                  </button>
              </li>
         </ul>
 
-        <div v-if="lightboxVisible" ref="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galerie d'images"
+        <div v-if="lightboxVisible" ref="lightbox" class="lightbox" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Galerie d'images"
             tabindex="-1" @click.self="closeLightbox" @keydown="handleKeyPress">
                  <button type="button" class="lightbox-close" @click="closeLightbox" aria-label="Fermer la galerie">
                     <svg width="32" height="32" viewBox="-0.5 0 25 25" fill="none" aria-hidden="true">

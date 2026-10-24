@@ -1,38 +1,95 @@
-* {
+// ─────────────────────────────────────────────
+//  Design « Le cadre » — tokens
+// ─────────────────────────────────────────────
+:root {
+    --paper: #FBF8F2;      // fond
+    --basalt: #16181A;     // texte
+    --moss: #344E41;       // couleur principale
+    --moss-text: #4F6A47;  // mousse lisible sur papier (contraste AA)
+    --sage: #A3B18A;       // décoratif uniquement
+    --stone: #DEDBD2;      // traits fins
+    --ember: #E85A2A;      // orange du logo : point REC et curseur
+    --white: #FFFFFF;
+
+    --header-h: 5rem;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+
+    // Alias des anciens noms (utilisés dans les blocs Storyblok)
+    --green-ascent: var(--moss);
+    --green-light-ascent: var(--moss-text);
+    --blue-ascent: #698396;
+    --black-ascent: var(--basalt);
+    --grey-ascent: #8C8A84;
+    --grey-light-ascent: var(--stone);
+    --light-bg: var(--paper);
+}
+
+*,
+*::before,
+*::after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Aspekta', sans-serif;
-    color: var(--black-ascent);
 }
 
-html,body {
-    font-size: clamp(12px, calc(16 * 100vw / 1440), 1rem);
-    background-color: var(--light-bg);
+html,
+body {
+    font-size: clamp(14px, calc(16 * 100vw / 1440), 1rem);
+    background-color: var(--paper);
 }
 
-:root {
-    --green-ascent: var(--primary-color, #344e41);
-    --green-light-ascent: var(--secondary-color, #a3b18a);
-    --blue-ascent: var(--blue-color, #698396);
-    --black-ascent: var(--light-white-color, #141614);
-    --grey-ascent: var(--white-color, #969191);
-    --grey-light-ascent: #DEDEDE;
-    --light-bg: #fffbf5;
-    --white: #FFFFFF;
+body {
+    font-family: 'Aspekta', system-ui, sans-serif;
+    color: var(--basalt);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-img, video {
-    @apply rounded-xl;
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
 }
 
-.active-text h2{
-    @apply text-green-light-ascent;
+// Images et vidéos : cadres nets, comme un plan de cinéma
+img,
+video {
+    display: block;
+    max-width: 100%;
 }
 
+::selection {
+    background: var(--moss);
+    color: var(--paper);
+}
 
-.modulaire p {
-    @apply text-white;
+:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 3px;
+}
+
+.active-text h2 {
+    color: var(--moss);
+}
+
+// Défilement fluide (Lenis)
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
 }
 
 .calendly-badge-widget {
@@ -44,8 +101,9 @@ img, video {
 }
 
 .calendly-badge-widget .calendly-badge-content {
-    @apply rounded-xl;
+    border-radius: 999px;
 }
+
 /* Badge Calendly visible après un écran de défilement (géré par Footer.vue) */
 html.show-floating .calendly-badge-widget {
     display: block;
@@ -57,7 +115,7 @@ html.show-floating .calendly-badge-widget {
     left: -9999px;
     top: 0;
     z-index: 100;
-    @apply bg-white text-black px-4 py-2 rounded-xl;
+    @apply bg-white text-black px-4 py-2 rounded-full;
     &:focus {
         left: 1rem;
         top: 1rem;
@@ -65,10 +123,11 @@ html.show-floating .calendly-badge-widget {
 }
 
 .footer-title {
-    @apply text-2xl mb-4 mt-0;
+    @apply text-sm mb-4 mt-0;
+    color: var(--grey-ascent);
 }
 
-/* Champ piège anti-spam du formulaire de contact */
+/* Champ piège anti-spam des formulaires */
 .hp-field {
     position: absolute !important;
     left: -10000px !important;
@@ -79,22 +138,71 @@ html.show-floating .calendly-badge-widget {
 
 /* FAQ */
 .faq-list {
-    @apply border-t border-black;
+    border-top: 1px solid var(--basalt);
 }
 .faq-item {
-    @apply border-b border-black py-5;
+    border-bottom: 1px solid var(--stone);
+    @apply py-6;
     summary {
-        @apply cursor-pointer text-xl font-bold list-none flex justify-between gap-4;
+        @apply cursor-pointer list-none flex justify-between items-baseline gap-6;
+        font-family: 'Cormorant', Georgia, serif;
+        font-size: clamp(1.4rem, 2vw, 1.9rem);
+        line-height: 1.15;
         &::-webkit-details-marker { display: none; }
         &::after {
             content: '+';
-            @apply text-green-light-ascent text-2xl leading-none;
+            font-family: 'Aspekta', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: var(--moss);
+            transition: transform 0.4s var(--ease-out);
         }
     }
     &[open] summary::after {
-        content: '–';
+        transform: rotate(45deg);
     }
     .faq-answer {
-        @apply pt-3 max-w-4xl;
+        @apply pt-4;
+        max-width: 64ch;
+        line-height: 1.65;
+    }
+}
+
+// Révélation des titres mot par mot (directive v-reveal)
+html.reveal-ready [data-reveal]:not(.is-split) {
+    visibility: hidden;
+}
+
+.rv-w {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    // évite de couper les jambages (g, p, ç…)
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+
+.rv-i {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+.is-revealed .rv-i {
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .rv-i {
+        transform: none;
     }
 }

@@ -4,12 +4,14 @@
 }
 
 .pricing-card {
-    @apply relative flex flex-col rounded-xl border border-green-light-ascent bg-white p-7;
+    @apply relative flex flex-col p-7;
+    border: 1px solid var(--stone);
+    border-radius: 4px;
+    background: var(--white);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-        transform: translateY(-6px);
-        box-shadow: rgba(50, 50, 93, 0.15) 0 13px 27px -5px, rgba(0, 0, 0, 0.15) 0 8px 16px -8px;
+        border-color: var(--basalt);
     }
 
     &.is-highlighted {
@@ -37,12 +39,14 @@
 }
 
 .pricing-badge {
-    @apply absolute -top-3 left-7 rounded-full bg-green-light-ascent px-3 py-1 text-xs font-bold uppercase tracking-wide;
+    @apply absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-medium;
+    background: var(--ember);
     color: var(--white) !important;
 }
 
 .pricing-name {
-    @apply text-2xl font-bold uppercase mb-1;
+    font-size: clamp(1.8rem, 2.2vw, 2.3rem);
+    @apply mb-1;
 }
 
 .pricing-tagline {
@@ -62,7 +66,10 @@
 }
 
 .pricing-amount {
-    @apply font-cormorant text-4xl leading-none;
+    font-family: 'Cormorant', Georgia, serif;
+    font-size: clamp(2.8rem, 3.4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1;
 }
 
 .pricing-suffix {
@@ -88,7 +95,8 @@
 /* Fenêtre de réservation */
 .booking-dialog {
     margin: auto; // le reset global "* { margin: 0 }" décentrait la fenêtre
-    @apply rounded-xl p-0 w-[min(640px,calc(100vw-2rem))] max-h-[calc(100vh-2rem)];
+    @apply p-0 w-[min(640px,calc(100vw-2rem))] max-h-[calc(100vh-2rem)];
+    border-radius: 6px;
     background: var(--light-bg);
 
     &::backdrop {

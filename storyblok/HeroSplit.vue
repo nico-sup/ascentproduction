@@ -16,7 +16,7 @@
             </div>
 
             <div class="center z-[2] flex justify-center items-center flex-col">
-                <h2 class="text-white uppercase text-[3rem] z-[3]">{{ blok.center_description_right }}</h2>
+                <h2 class="text-white z-[3]">{{ blok.center_description_right }}</h2>
                 <img class="w-[35%] h-[40%] -translate-y-7 object-cover" v-if="blok.img_right?.filename" :src="sbImage(blok.img_right.filename, '600x0')" :alt="blok.img_right.alt || ''" loading="lazy" decoding="async">
             </div>
 

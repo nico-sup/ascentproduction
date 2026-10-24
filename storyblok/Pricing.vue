@@ -1,14 +1,14 @@
 <template>
     <section v-editable="blok" class="container pricing" :class="{ 'is-page-top': blok.as_h1 }">
         <div class="max-w-3xl mb-12">
-            <span v-if="blok.tag" class="block mb-2" data-aos="fade-right">{{ blok.tag }}</span>
-            <component :is="blok.as_h1 ? 'h1' : 'h2'" class="text-green-light-ascent text-3xl md:text-5xl">{{ blok.title }}</component>
-            <p v-if="blok.intro" class="text-lg">{{ blok.intro }}</p>
+            <span v-if="blok.tag" class="eyebrow">{{ blok.tag }}</span>
+            <component :is="blok.as_h1 ? 'h1' : 'h2'" v-reveal :class="blok.as_h1 ? 'page-hero-title' : ''">{{ blok.title }}</component>
+            <p v-if="blok.intro" class="lede mt-6">{{ blok.intro }}</p>
         </div>
 
         <ul class="pricing-grid">
             <li v-for="pack in packs" :key="pack._uid" v-editable="pack" class="pricing-card" :class="{ 'is-highlighted': pack.highlighted }"
-                data-aos="fade-up">
+               >
                 <span v-if="pack.badge" class="pricing-badge">{{ pack.badge }}</span>
 
                 <h3 class="pricing-name">{{ pack.name }}</h3>

@@ -1,80 +1,76 @@
 <template>
-    <footer class="border-t pt-11 border-t-green-light-ascent">
-        <div class="grid md:grid-cols-2 gap-y-8 lg:grid-cols-4 container pb-11">
-
-            <div>
-                <NuxtLink to="/" aria-label="Ascent Production – accueil">
-                    <img src="/images/logo-ascent.webp" class="mb-6 block max-w-48 h-auto" width="192" height="38"
-                        alt="Logo Ascent Production" loading="lazy" decoding="async">
+    <footer class="site-footer">
+        <div class="container">
+            <!-- Appel principal -->
+            <div class="footer-cta">
+                <p class="footer-title">Un projet vidéo, un tournage drone ?</p>
+                <NuxtLink to="/contact" class="footer-cta-link">
+                    <span v-reveal>Parlons de votre projet</span>
                 </NuxtLink>
-                <!-- Présentation factuelle : utile aux visiteurs, à Google et aux moteurs IA -->
-                <p class="text-sm max-w-xs">
-                    Ascent Production est une société de production audiovisuelle basée à Clermont-Ferrand,
-                    en Auvergne : films d'entreprise, publicité, événementiel, drone, photographie,
-                    montage et création de sites internet. Interventions partout en France.
-                </p>
-                <ul v-if="socialLinks.length" class="flex gap-4">
-                    <li v-for="s in socialLinks" :key="s.key">
-                        <a :href="s.url" target="_blank" rel="noopener me" :aria-label="`${site.name} sur ${s.label}`"
-                            class="block p-2 before:hidden">
-                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="#27292F">
-                                <path :d="s.icon" />
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
+                <a :href="`mailto:${site.email}`" class="footer-mail link-line">{{ site.email }}</a>
             </div>
 
-            <div>
-                <p class="footer-title">{{ site.name }}</p>
-                <address class="not-italic">
-                    <p class="my-0">Production audiovisuelle</p>
-                    <p class="my-0">{{ site.postalCode }} {{ site.city }}, {{ site.department }}</p>
-                    <p class="mt-0">Auvergne · Déplacements dans toute la France</p>
-                    <a class="block text-green-light-ascent" :href="`tel:${site.phoneIntl}`">{{ site.phone }}</a>
-                    <a class="block text-green-light-ascent" :href="`mailto:${site.email}`">{{ site.email }}</a>
-                </address>
+            <div class="footer-grid">
+                <div class="md:col-span-5">
+                    <NuxtLink to="/" aria-label="Ascent Production – accueil">
+                        <img src="/images/logo-ascent.webp" class="mb-6 block h-9 w-auto" width="182" height="36"
+                            alt="Logo Ascent Production" loading="lazy" decoding="async">
+                    </NuxtLink>
+                    <!-- Présentation factuelle : utile aux visiteurs, à Google et aux moteurs IA -->
+                    <p class="text-sm max-w-sm" style="color: var(--grey-ascent)">
+                        Ascent Production est une société de production audiovisuelle basée à Clermont-Ferrand,
+                        en Auvergne : films d'entreprise, publicité, événementiel, drone, photographie,
+                        montage et création de sites internet. Interventions partout en France.
+                    </p>
+                    <ul v-if="socialLinks.length" class="flex gap-2 mt-4">
+                        <li v-for="s in socialLinks" :key="s.key">
+                            <a :href="s.url" target="_blank" rel="noopener me" :aria-label="`${site.name} sur ${s.label}`"
+                                class="block p-2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                                    <path :d="s.icon" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <p class="footer-title">Studio</p>
+                    <address class="not-italic text-sm leading-7">
+                        {{ site.postalCode }} {{ site.city }}<br>
+                        {{ site.department }}, Auvergne<br>
+                        Déplacements dans toute la France<br>
+                        <a class="link-line" :href="`tel:${site.phoneIntl}`">{{ site.phone }}</a>
+                    </address>
+                </div>
+
+                <nav class="md:col-span-4" aria-label="Liens du pied de page">
+                    <p class="footer-title">Navigation</p>
+                    <ul class="footer-nav">
+                        <li><NuxtLink class="link-line" to="/">Accueil</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/projects">Nos réalisations</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/nos-expertises">Nos expertises</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/production-audiovisuelle">Production audiovisuelle</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/site-internet">Création de site internet</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/nos-tarifs">Nos tarifs</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/contact">Contact</NuxtLink></li>
+                    </ul>
+                </nav>
             </div>
 
-            <nav aria-label="Liens du pied de page">
-                <p class="footer-title">Navigation</p>
-                <ul>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/">Accueil</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/projects">Nos réalisations</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/nos-expertises">Nos expertises</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/production-audiovisuelle">Production audiovisuelle</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/site-internet">Création de site internet</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/nos-tarifs">Nos tarifs</NuxtLink></li>
-                    <li><NuxtLink class="hover:text-green-light-ascent" to="/contact">Contact</NuxtLink></li>
-                </ul>
-            </nav>
-
-            <div>
-                <p class="footer-title">Un projet vidéo ?</p>
-                <NuxtLink class="button" to="/contact">Demander un devis</NuxtLink>
+            <div class="footer-bottom">
+                <p class="m-0">© {{ year }} {{ site.name }}</p>
+                <div class="flex flex-wrap gap-x-8 gap-y-2">
+                    <NuxtLink class="link-line" to="/politique-de-confidentialite">Politique de confidentialité</NuxtLink>
+                    <NuxtLink class="link-line" to="/mentions-legales">Mentions légales</NuxtLink>
+                </div>
             </div>
-
-        </div>
-
-        <div class="border-t border-r-green-light-ascent">
-            <ul class="container flex flex-wrap justify-center items-center gap-x-10 gap-y-2 py-2">
-                <li>
-                    <p class="before:hidden">© {{ year }} {{ site.name }}</p>
-                </li>
-                <li>
-                    <NuxtLink to="/politique-de-confidentialite">Politique de confidentialité</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
-                </li>
-            </ul>
         </div>
     </footer>
 
-    <button v-show="showFloating" type="button" @click="goToTop" aria-label="Revenir en haut de la page"
-        class="fixed bg-white right-6 bottom-6 border border-grey-ascent p-4 z-[2] rounded-xl">
-        <svg width="16" height="16" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M34.4086 18.3646C35.4501 17.3232 35.4501 15.635 34.4086 14.5934L21.3627 1.56024C19.2795 -0.5208 15.9041 -0.519973 13.8222 1.56208L0.781117 14.603C-0.260217 15.6446 -0.260217 17.3328 0.781117 18.3744C1.82245 19.4158 3.51098 19.4158 4.55232 18.3744L15.7142 7.21256C16.7555 6.17117 18.4438 6.17117 19.4854 7.21256L30.6374 18.3646C31.6788 19.4062 33.3673 19.4062 34.4086 18.3646Z" fill="#27292F"/>
+    <button v-show="showFloating" type="button" @click="goToTop" aria-label="Revenir en haut de la page" class="to-top">
+        <svg width="14" height="14" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M34.4086 18.3646C35.4501 17.3232 35.4501 15.635 34.4086 14.5934L21.3627 1.56024C19.2795 -0.5208 15.9041 -0.519973 13.8222 1.56208L0.781117 14.603C-0.260217 15.6446 -0.260217 17.3328 0.781117 18.3744C1.82245 19.4158 3.51098 19.4158 4.55232 18.3744L15.7142 7.21256C16.7555 6.17117 18.4438 6.17117 19.4854 7.21256L30.6374 18.3646C31.6788 19.4062 33.3673 19.4062 34.4086 18.3646Z" fill="currentColor"/>
         </svg>
     </button>
 </template>
@@ -107,8 +103,12 @@ function handleScroll() {
     document.documentElement.classList.toggle('show-floating', showFloating.value);
 }
 
+const nuxtApp = useNuxtApp();
+
 function goToTop() {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    const lenis = nuxtApp.$lenis;
+    if (lenis) lenis.scrollTo(0, { duration: 1.4 });
+    else window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 }
 
 onMounted(() => {

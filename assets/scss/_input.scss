@@ -4,20 +4,31 @@ form {
 
 .formInput {
     @apply grid gap-2 mb-5 md:mb-0 relative;
+
     label {
-        @apply text-sm font-bold ml-6;
+        @apply text-sm;
+        color: #3a3d3f;
     }
 
-    input, textarea {
-        @apply border border-green-light-ascent px-6 py-4 text-sm rounded-xl;
+    input,
+    textarea {
+        @apply px-4 py-3.5 text-base;
+        background: var(--white);
+        border: 1px solid var(--stone);
+        border-radius: 4px;
+        transition: border-color 0.25s ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--basalt);
+        }
     }
 
     textarea {
-        min-height: 15rem;
-        @apply rounded-xl;
+        min-height: 12rem;
     }
 }
 
 .error {
-    @apply font-bold text-xs text-red-500 ml-6 absolute top-[calc(100%+0.2rem)];
+    @apply text-xs text-red-700 absolute top-[calc(100%+0.2rem)];
 }

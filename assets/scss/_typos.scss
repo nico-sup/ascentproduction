@@ -1,40 +1,80 @@
+// Typographie éditoriale : Cormorant (titres) + Aspekta (texte)
+h1,
+h2,
+h3 {
+    font-family: 'Cormorant', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    @apply mb-4;
+}
+
 h1 {
-    @apply text-5xl mb-4;
+    font-size: clamp(3rem, 7.2vw, 7.5rem);
+    font-weight: 300;
 }
 
 h2 {
-    @apply text-3xl mb-4;
+    font-size: clamp(2.3rem, 4.4vw, 4.6rem);
+    font-weight: 300;
 }
 
 h3 {
-    @apply text-2xl mb-4;
+    font-size: clamp(1.5rem, 2.1vw, 2.1rem);
 }
 
 h4 {
-    @apply text-2xl mb-4;
+    @apply text-lg font-medium mb-3;
 }
 
 h5 {
-    @apply text-xl font-bold mb-4;
+    @apply text-base font-bold mb-3;
 }
 
 h6 {
-    @apply text-xl mb-4;
+    @apply text-base mb-3;
 }
 
 p {
     @apply my-4;
+    line-height: 1.6;
 }
 
 a {
+    transition: color 0.3s ease;
     &:hover {
-        color: var(--green-light-ascent);
+        color: var(--moss);
     }
 }
 
-.wysiwyg ul {
+// Surtitres saisis dans Storyblok (« Projets », « Expertises »…)
+.eyebrow {
+    @apply block text-sm mb-3;
+    color: var(--moss-text);
+}
+
+// Texte d'introduction
+.lede {
+    font-size: clamp(1.1rem, 1.35vw, 1.35rem);
+    line-height: 1.55;
+    max-width: 44ch;
+}
+
+.wysiwyg {
+    h2 {
+        @apply mt-12;
+    }
+    p,
     li {
+        max-width: 68ch;
+        line-height: 1.7;
+    }
+    ul li {
         list-style-type: square;
-        margin-left: 2rem;
+        margin-left: 1.25rem;
+    }
+    a {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
     }
 }

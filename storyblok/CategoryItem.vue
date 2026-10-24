@@ -1,15 +1,25 @@
 <template>
-     <section v-editable="blok" class="category-item my-4" data-aos="fade-up" data-aos-mirror="true">
-        <div class="h-[25rem] flex flex-col justify-center px-4 relative">
-             <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1200x0')" :alt="blok.image.alt || blok.title || ''"
-                class="absolute top-0 left-0 w-full h-full object-cover z-0" loading="lazy" decoding="async" />
-             <h3 class="z-[2] text-white uppercase text-3xl">{{ blok.title }}</h3>
-             <p class="z-[2] text-white text-2xl mt-0 mb-4">{{ blok.subtitle }}</p>
-             <SbLink :link="blok.link" :aria-label="blok.title" />
-        </div>
-     </section>
+     <article v-editable="blok" class="category-item">
+        <SbLink v-if="hasLink" :link="blok.link" class="block">
+            <div class="category-item-media media-zoom">
+                <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1200x0')" :alt="blok.image.alt || blok.title || ''"
+                    loading="lazy" decoding="async" />
+            </div>
+            <h3 class="caption-title">{{ blok.title }}</h3>
+            <p v-if="blok.subtitle" class="caption-sub">{{ blok.subtitle }}</p>
+        </SbLink>
+        <template v-else>
+            <div class="category-item-media">
+                <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1200x0')" :alt="blok.image.alt || blok.title || ''"
+                    loading="lazy" decoding="async" />
+            </div>
+            <h3 class="caption-title">{{ blok.title }}</h3>
+            <p v-if="blok.subtitle" class="caption-sub">{{ blok.subtitle }}</p>
+        </template>
+     </article>
 </template>
 
 <script setup>
-    defineProps({ blok: Object })
+    const props = defineProps({ blok: Object })
+    const hasLink = computed(() => !!resolveSbLink(props.blok.link).to)
 </script>

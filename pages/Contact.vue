@@ -1,11 +1,11 @@
 <template>
 
-    <div class="container form mt-24 mb-24">
-        <h1 class="my-10 font-bold text-3xl">
-            Nous contacter
-            <span class="block text-xl font-normal mt-2">Ascent Production, production audiovisuelle à Clermont-Ferrand</span>
-        </h1>
-        <p class="max-w-3xl mb-10">
+    <div class="container form mb-24">
+        <div class="page-hero-head px-0">
+            <h1 v-reveal class="page-hero-title">Nous contacter</h1>
+            <p class="page-hero-aside lede m-0">Ascent Production, production audiovisuelle et drone à Clermont-Ferrand.</p>
+        </div>
+        <p class="max-w-3xl mb-14 split-body">
             Un projet de film d'entreprise, de vidéo publicitaire, de captation d'événement, de prise de vue par drone
             ou de site internet ? Décrivez-le nous : nous vous répondons rapidement. Basés à Clermont-Ferrand (Puy-de-Dôme),
             nous intervenons en Auvergne et partout en France.

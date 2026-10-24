@@ -21,6 +21,24 @@
     font-weight: 700;
 }
 
+// Serif éditoriale des titres (variable : graisses 300 à 700)
+@font-face {
+    font-family: 'Cormorant';
+    src: url('/font/Cormorant-var.woff2') format('woff2-variations'), url('/font/Cormorant-var.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant';
+    src: url('/font/Cormorant-Italic-var.woff2') format('woff2-variations'), url('/font/Cormorant-Italic-var.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+// Police du logo (plus utilisée dans les textes)
 @font-face {
     font-family: 'Joyride';
     src: url('/font/JoyrideEXTItalic.woff2') format('woff2'), url('/font/JoyrideEXTItalic.otf') format('opentype');

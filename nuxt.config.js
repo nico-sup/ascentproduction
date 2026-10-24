@@ -22,11 +22,18 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       meta: [
         { name: 'author', content: 'Ascent Production' },
-        { name: 'theme-color', content: '#344e41' },
+        { name: 'theme-color', content: '#FBF8F2' },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'google-site-verification', content: '8DLnBD6HRkhCIPw4ayfGnoY0gJ2RFZV2ySR7BJAETew' },
         { property: 'og:site_name', content: 'Ascent Production' },
         { property: 'og:locale', content: 'fr_FR' },
+      ],
+      script: [
+        {
+          // Masque les titres animés le temps que la page se charge (sauf si l'utilisateur réduit les animations)
+          key: 'reveal-ready',
+          innerHTML: "(function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.classList.add('reveal-ready');setTimeout(function(){d.classList.remove('reveal-ready')},3000)}}catch(e){}})()",
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -36,7 +43,7 @@ export default defineNuxtConfig({
         { rel: 'manifest', href: '/site.webmanifest' },
         // Polices principales préchargées (évite le saut de texte au chargement)
         { rel: 'preload', href: '/font/Aspekta-400.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
-        { rel: 'preload', href: '/font/JoyrideEXTItalic.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+        { rel: 'preload', href: '/font/Cormorant-var.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
         { rel: 'preconnect', href: 'https://a.storyblok.com' },
         // Fichier de présentation pour les moteurs IA
         { rel: 'alternate', type: 'text/markdown', href: '/llms.txt', title: 'Ascent Production – résumé pour les IA' },
@@ -60,7 +67,6 @@ export default defineNuxtConfig({
     ['@storyblok/nuxt', { accessToken: process.env.STORYBLOK_TOKEN }],
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
-    'nuxt-aos',
     '@nuxtjs/sitemap',
   ],
 
@@ -101,15 +107,6 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/main.scss', 'aos/dist/aos.css', 'swiper/css/pagination'],
+  css: ['~/assets/main.scss', 'swiper/css/pagination'],
 
-  aos: {
-    offset: 120,
-    delay: 0,
-    duration: 1700,
-    easing: 'ease',
-    once: false,
-    mirror: true,
-    anchorPlacement: 'top-bottom',
-  },
 })

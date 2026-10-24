@@ -1,12 +1,11 @@
 <template>
     <section v-editable="blok" class="container">
-            <ul class="layout-grid">
-                <li v-for="(items, index) in blok.item" :key="index" class="col-span-full md:col-span-4 h-full">
-                    <Activity :blok="items" />
-                </li>
-            </ul>
+        <ul class="activities-grid">
+            <li v-for="(item, index) in blok.item" :key="item._uid || index">
+                <Activity :blok="item" />
+            </li>
+        </ul>
     </section>
-
 </template>
 
 <script setup>

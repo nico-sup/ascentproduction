@@ -1,26 +1,26 @@
 <template>
-    <div ref="root" v-editable="blok" class="hero_banner hero_banner_img relative flex justify-center items-start flex-col">
-
-        <img v-if="blok.image?.filename" class="absolute top-0 left-0 h-full w-full object-cover"
-            :src="sbImage(blok.image.filename, '1920x0')" :alt="blok.image.alt || blok.title || ''"
-            fetchpriority="high" decoding="async">
-
-        <div class="z-[2] pl-5 md:pl-20 mb-9">
-            <h1 class="relative text-white font-cormorant font-bold uppercase mb-16 text-[2rem]">{{ blok.title }}</h1>
-            <p class="text-white uppercase w-[80%] md:w-[50%] m-0 font-light relative">{{ blok.description }}</p>
+    <section ref="root" v-editable="blok" class="page-hero">
+        <div class="container page-hero-head">
+            <h1 v-reveal class="page-hero-title">{{ blok.title }}</h1>
+            <div class="page-hero-aside">
+                <p v-if="blok.description" class="lede m-0">{{ blok.description }}</p>
+                <div v-if="link.to || blok.anchor" class="flex flex-wrap gap-3 mt-6">
+                    <a v-if="link.to" class="button" :href="link.to"
+                        v-bind="link.external ? { target: '_blank', rel: 'noopener' } : {}">
+                        <img class="h-3 w-auto invert" src="/images/play.svg" alt="" width="12" height="12">
+                        Voir la vidéo
+                    </a>
+                    <a v-if="blok.anchor" class="button-ghost" href="#contenu" @click.prevent="scrollToNext">{{ blok.anchor }}</a>
+                </div>
+            </div>
         </div>
 
-        <div class="z-[2] pl-5 md:pl-20 flex gap-6">
-            <a v-if="link.to" class="button-play gap-2 font-bold" :href="link.to"
-                v-bind="link.external ? { target: '_blank', rel: 'noopener' } : {}">
-                <img class="h-4 w-auto object-contain" src="/images/play.svg" alt="" width="16" height="16">
-                Play
-            </a>
-            <a v-if="blok.anchor" class="bg-white bg-opacity-30 flex items-center px-4 rounded-xl font-bold text-white anchor hover:text-black"
-                href="#contenu" @click.prevent="scrollToNext">{{ blok.anchor }}</a>
+        <div v-if="blok.image?.filename" class="page-hero-frame">
+            <img :src="sbImage(blok.image.filename, '1920x0')" :alt="blok.image.alt || blok.title || ''"
+                fetchpriority="high" decoding="async">
+            <div class="viewfinder" aria-hidden="true"><span></span></div>
         </div>
-
-    </div>
+    </section>
 </template>
 
 <script setup>
@@ -29,9 +29,13 @@ import { ref, computed } from 'vue';
 const props = defineProps({ blok: Object });
 const root = ref(null);
 const link = computed(() => resolveSbLink(props.blok.link));
+const nuxtApp = useNuxtApp();
 
 // Fait défiler jusqu'à la section suivante
 function scrollToNext() {
-    root.value?.nextElementSibling?.scrollIntoView({ behavior: 'smooth' });
+    const next = root.value?.nextElementSibling;
+    if (!next) return;
+    if (nuxtApp.$lenis) nuxtApp.$lenis.scrollTo(next, { offset: -80 });
+    else next.scrollIntoView({ behavior: 'smooth' });
 }
 </script>

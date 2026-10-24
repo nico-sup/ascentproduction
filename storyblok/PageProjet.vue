@@ -1,7 +1,10 @@
 <template>
-    <section v-editable="blok" class="!mt-24">
-        <h1 class="text-center px-5 mb-14 text-3xl">{{ blok.headline || 'Nos réalisations' }}</h1>
-        <div v-if="articles.length" class="grid md:grid-cols-2 gap-2 container">
+    <section v-editable="blok" class="projects-index">
+        <div class="container page-hero-head">
+            <h1 v-reveal class="page-hero-title">{{ blok.headline || 'Nos réalisations' }}</h1>
+            <p class="page-hero-aside lede m-0">Films d'entreprise, sport automobile, outdoor, voyages : une sélection de projets tournés en France et à l'étranger.</p>
+        </div>
+        <div v-if="articles.length" class="projects-grid container">
             <ArticleCard
                 v-for="article in articles"
                 :key="article.uuid"

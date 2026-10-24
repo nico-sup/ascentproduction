@@ -1,11 +1,10 @@
 <template>
-     <div v-editable="blok" data-aos="fade-up" data-aos-mirror="true" class="bg-green-light-ascent rounded-xl p-5 h-full">
-        <div class="flex flex-col justify-start px-4 relative">
-             <img v-if="blok.icon?.filename" :src="sbImage(blok.icon.filename, '160x0')" :alt="blok.icon.alt || ''"
-                class="h-10 object-contain w-fit mb-5" loading="lazy" decoding="async" />
-             <h3 class="z-[2] text-white uppercase text-3xl">{{ blok.title }}</h3>
-             <p class="z-[2] text-white">{{ blok.description }}</p>
-        </div>
+     <div v-editable="blok" class="activity">
+        <span v-if="blok.icon?.filename" class="activity-icon">
+            <img :src="sbImage(blok.icon.filename, '160x0')" :alt="blok.icon.alt || ''" loading="lazy" decoding="async" />
+        </span>
+        <h3>{{ blok.title }}</h3>
+        <p class="m-0">{{ blok.description }}</p>
     </div>
 </template>
 

@@ -10,9 +10,69 @@
     @apply grid grid-cols-6 md:grid-cols-12 gap-5;
 }
 
-section {
-    @apply my-20 md:my-24;
+// Le menu est fixe : le contenu commence sous lui
+main#contenu {
+    padding-top: var(--header-h);
 }
+
+section {
+    @apply my-24 md:my-36;
+}
+
 section:first-of-type {
     margin-top: 0;
+}
+
+// Image cadrée qui grossit légèrement au survol (projets, expertises…)
+.media-zoom {
+    overflow: hidden;
+    img,
+    video {
+        transition: transform 1.2s var(--ease-out);
+    }
+}
+
+a:hover .media-zoom img,
+a:hover .media-zoom video,
+.media-zoom:hover img,
+.media-zoom:hover video {
+    transform: scale(1.04);
+}
+
+// Légende sous une image
+.caption-title {
+    font-family: 'Cormorant', Georgia, serif;
+    font-size: clamp(1.5rem, 2vw, 2.1rem);
+    line-height: 1.1;
+    @apply mt-4 mb-1;
+}
+
+.caption-sub {
+    @apply text-sm m-0;
+    color: var(--grey-ascent);
+}
+
+// Repères d'angle du viseur
+.viewfinder {
+    position: absolute;
+    inset: clamp(12px, 2vw, 28px);
+    pointer-events: none;
+    z-index: 2;
+
+    &::before,
+    &::after,
+    span::before,
+    span::after {
+        content: '';
+        position: absolute;
+        width: clamp(16px, 2vw, 28px);
+        height: clamp(16px, 2vw, 28px);
+        border-color: rgba(255, 255, 255, 0.85);
+        border-style: solid;
+        border-width: 0;
+    }
+    &::before { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+    &::after { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+    span::before { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+    span::after { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
 }

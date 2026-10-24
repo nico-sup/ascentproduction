@@ -1,27 +1,194 @@
-.category-item {
-    position: relative;
-    &::before {
-        content: '';
-        @apply block absolute top-0 left-0 w-full h-full bg-black opacity-20 z-[1] rounded-xl;
-    }
+// En-tête de section : surtitre + grand titre, aligné à gauche
+.section-head {
+    @apply mb-12 md:mb-16;
 
-    h3::after {
-        content: '';
-        @apply block h-[2px] w-5 bg-white mt-1;
-    }
-
-    a {
-        @apply absolute top-0 left-0 w-full h-full z-[2];
+    h2 {
+        max-width: 14em;
     }
 }
 
-.has-link div {
-    &:hover {
-        transform: translateY(-10px);
-        transition: all 0.4s ease-in;
+// Projets mis en avant : grille décalée
+.category-grid {
+    @apply grid gap-x-6 gap-y-14 md:grid-cols-2;
+
+    @media (min-width: 768px) {
+        > :nth-child(even) {
+            margin-top: 7rem;
+        }
     }
-    
+}
+
+.category-item-media {
+    aspect-ratio: 4 / 3;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Expertises : trois colonnes portrait
+.expertise-grid {
+    @apply grid gap-x-6 gap-y-12 md:grid-cols-3;
+}
+
+.category-split-media {
+    aspect-ratio: 3 / 4;
+    background: var(--stone);
+
+    img,
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.category-split.has-link .caption-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s ease;
+}
+
+.category-split.has-link:hover .caption-title {
+    text-decoration-color: currentColor;
+}
+
+// Activités : colonnes séparées par un trait
+.activities-grid {
+    @apply grid gap-10 md:grid-cols-3;
+}
+
+.activity {
+    border-top: 1px solid var(--basalt);
+    @apply pt-6;
+
     h3 {
-        @apply underline;
+        @apply mt-6 mb-3;
     }
+
+    p {
+        color: var(--grey-ascent);
+        max-width: 40ch;
+    }
+}
+
+.activity-icon {
+    @apply inline-flex items-center justify-center w-12 h-12 rounded-full;
+    background: var(--moss);
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+    }
+}
+
+// Texte + image côte à côte
+.split {
+    @apply grid gap-10 md:grid-cols-12 items-center;
+
+    .split-text {
+        @apply md:col-span-6;
+    }
+
+    .split-media {
+        @apply md:col-span-5 md:col-start-8;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &.is-reversed {
+        .split-text {
+            @apply md:col-start-7 md:row-start-1;
+        }
+        .split-media {
+            @apply md:col-start-1 md:row-start-1;
+        }
+    }
+}
+
+.split-body {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 52ch;
+    color: #3a3d3f;
+}
+
+// Liste de mots-clés (bloc List) : grandes lignes serif
+.imgtext-title {
+    margin: 0;
+    font-size: clamp(2.2rem, 6vw, 6rem);
+    line-height: 1.05;
+    font-weight: 300;
+}
+
+// Bandeau « Une demande, un projet ? »
+.contact-band {
+    position: relative;
+}
+
+.contact-band-media {
+    position: relative;
+    height: clamp(320px, 60vh, 640px);
+    overflow: hidden;
+    background: var(--basalt);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Dégradé : le texte blanc reste lisible quelle que soit la photo
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(22, 24, 26, 0.75) 0%, rgba(22, 24, 26, 0.15) 55%, rgba(22, 24, 26, 0) 100%);
+        z-index: 1;
+    }
+}
+
+.contact-band-link {
+    position: absolute;
+    left: clamp(2.5rem, 7vw, 7rem);
+    bottom: clamp(2.5rem, 6vw, 5rem);
+    right: 2.5rem;
+    z-index: 3;
+    color: var(--white);
+
+    > span:first-child {
+        display: block;
+        font-family: 'Cormorant', Georgia, serif;
+        font-weight: 300;
+        font-size: clamp(2.4rem, 6vw, 6rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    &:hover {
+        color: var(--white);
+    }
+}
+
+.contact-band-cta {
+    display: inline-block;
+    @apply mt-6 py-3 px-6 rounded-full text-sm;
+    background: var(--paper);
+    color: var(--basalt);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-band-link:hover .contact-band-cta {
+    background: var(--moss);
+    color: var(--paper);
 }

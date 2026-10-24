@@ -6,6 +6,9 @@
             <NuxtPage />
         </main>
         <Footer />
+        <ClientOnly>
+            <AppCursor />
+        </ClientOnly>
     </NuxtLayout>
 </template>
 

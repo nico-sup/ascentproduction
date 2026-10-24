@@ -1,40 +1,58 @@
-.video-bloc {
-    video {
-       clip-path: inset(0% 0 0% 0);
+.video-section ul {
+    border-top: 1px solid var(--basalt);
+}
+
+.video-section li {
+    border-bottom: 1px solid var(--stone);
+
+    @media (min-width: 768px) {
+        &:nth-child(even) {
+            border-left: 1px solid var(--stone);
+        }
     }
 }
 
-.video-section {
-    li:last-child {
-            @apply border-b-2 border-b-black;
+.video-bloc {
+    @apply py-8 md:px-8;
+}
+
+.video-bloc-top {
+    @apply flex justify-between items-baseline gap-6 mb-6;
+}
+
+.video-bloc-num {
+    @apply inline-flex items-center gap-2 text-sm tabular-nums;
+    color: var(--grey-ascent);
+}
+
+.video-bloc-media {
+    aspect-ratio: 16 / 9;
+    background: var(--stone);
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
+}
 
-    @media screen and (min-width: 768px) {
-        li:nth-last-child(-n+2) {
-            @apply border-b-2 border-b-black;
-        }
+.video-bloc-tags {
+    @apply flex flex-wrap gap-2 mt-5 text-xs;
 
-         li:nth-child(even) {
-        @apply border-l-2 border-l-black;
-        }
+    li {
+        @apply py-1.5 px-3 rounded-full;
+        border: 1px solid var(--stone);
     }
 }
 
 .dot {
-    @apply h-2 w-2 bg-red-400 block rounded-full;
-    animation: animate 4s linear infinite;
+    @apply h-2 w-2 block rounded-full;
+    background: var(--ember);
+    animation: rec-dot 1.6s steps(1) infinite;
 }
 
-@keyframes animate {
-    0% {
-        opacity: 0;
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    100% {
+@keyframes rec-dot {
+    50% {
         opacity: 0;
     }
 }

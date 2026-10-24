@@ -1,8 +1,14 @@
 <template>
-    <section v-editable="blok" class="image-description container relative h-[40vh] flex justify-center items-center" data-aos="fade-up">
-        <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1600x0')" :alt="blok.image.alt || ''"
-            class="absolute top-0 left-0 h-full w-full object-cover rounded-none" loading="lazy" decoding="async">
-        <NuxtLink class="bg-white px-5 z-[2] text-2xl" to="/contact">Une demande / Un projet ?</NuxtLink>
+    <section v-editable="blok" class="container contact-band">
+        <div class="contact-band-media">
+            <img v-if="blok.image?.filename" :src="sbImage(blok.image.filename, '1600x0')" :alt="blok.image.alt || ''"
+                loading="lazy" decoding="async">
+            <div class="viewfinder" aria-hidden="true"><span></span></div>
+        </div>
+        <NuxtLink class="contact-band-link" to="/contact">
+            <span v-reveal>Une demande, un projet ?</span>
+            <span class="contact-band-cta">Écrivez-moi</span>
+        </NuxtLink>
     </section>
 </template>
 

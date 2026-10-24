@@ -46,7 +46,7 @@ export default defineAppConfig({
     calendly: {
       url: 'https://calendly.com/ascent-audiovisuel/parlons-de-votre-projet',
       text: 'On se rencontre ?',
-      color: '#8aba9c',
+      color: '#344E41',
       textColor: '#ffffff',
     },
   },
