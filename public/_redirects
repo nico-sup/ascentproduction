@@ -5,3 +5,7 @@
 
 # La création de sites internet ne fait plus partie des services
 /site-internet   /production-audiovisuelle   301
+
+# Éditeur visuel Storyblok : une page pas encore publiée n'existe pas en HTML.
+# Avec ?_storyblok=…, on sert l'application qui charge le brouillon dans le navigateur.
+/*   _storyblok=:id   /200.html   200

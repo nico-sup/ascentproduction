@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { useStoryblokApi } from '@storyblok/vue'
 
 defineProps({ blok: Object })
@@ -24,19 +25,28 @@ defineProps({ blok: Object })
 const route = useRoute()
 const config = useRuntimeConfig()
 const storyblokApi = useStoryblokApi()
-const version = route.query._storyblok ? 'draft' : config.public.storyblokVersion
 
-// useAsyncData : la liste est intégrée au HTML pré-généré (visible par Google et les IA)
-const { data } = await useAsyncData(`projects-list-${version}`, async () => {
+const fetchProjects = async (version) => {
     const res = await storyblokApi.get('cdn/stories', {
         version,
         starts_with: 'projects/',
         is_startpage: false,
         per_page: 100,
         sort_by: 'first_published_at:desc',
+        cv: version === 'draft' ? Date.now() : undefined,
     })
     return res.data.stories || []
-})
+}
+
+// useAsyncData : la liste est intégrée au HTML pré-généré (visible par Google et les IA)
+const { data } = await useAsyncData('projects-list', () => fetchProjects(config.public.storyblokVersion))
+
+// Éditeur visuel Storyblok : on affiche aussi les projets en brouillon
+if (route.query._storyblok) {
+    onMounted(async () => {
+        try { data.value = await fetchProjects('draft') } catch (e) { /* on garde la liste publiée */ }
+    })
+}
 
 const articles = computed(() => data.value || [])
 </script>
