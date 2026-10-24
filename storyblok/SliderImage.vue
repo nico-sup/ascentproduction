@@ -19,6 +19,7 @@
     </section>
   </template>
 
+
   <script setup>
   import ImgWithLink from '~/storyblok/ImgWithLink.vue';
   defineProps({ blok: Object });
