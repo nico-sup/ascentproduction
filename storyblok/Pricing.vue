@@ -2,7 +2,7 @@
     <section v-editable="blok" class="container pricing" :class="{ 'is-page-top': blok.as_h1 }">
         <div class="max-w-3xl mb-12">
             <span v-if="blok.tag" class="eyebrow">{{ blok.tag }}</span>
-            <component :is="blok.as_h1 ? 'h1' : 'h2'" v-reveal :class="blok.as_h1 ? 'page-hero-title' : ''">{{ blok.title }}</component>
+            <component :is="blok.as_h1 ? 'h1' : 'h2'" v-reveal="blok.title" :class="blok.as_h1 ? 'page-hero-title' : ''">{{ blok.title }}</component>
             <p v-if="blok.intro" class="lede mt-6">{{ blok.intro }}</p>
         </div>
 

@@ -4,7 +4,7 @@
             <div class="container page-hero-head">
                 <div class="md:col-span-8">
                     <NuxtLink to="/projects" class="eyebrow link-line w-fit">Nos réalisations</NuxtLink>
-                    <h1 v-if="blok.title" v-reveal class="page-hero-title">{{ blok.title }}</h1>
+                    <h1 v-if="blok.title" v-reveal="blok.title" class="page-hero-title">{{ blok.title }}</h1>
                 </div>
                 <p v-if="blok.description" class="page-hero-aside lede m-0">{{ blok.description }}</p>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <section v-editable="blok" class="projects-index">
         <div class="container page-hero-head">
-            <h1 v-reveal class="page-hero-title">{{ blok.headline || 'Nos réalisations' }}</h1>
+            <h1 v-reveal="blok.headline || 'Nos réalisations'" class="page-hero-title">{{ blok.headline || 'Nos réalisations' }}</h1>
             <p class="page-hero-aside lede m-0">Films d'entreprise, sport automobile, outdoor, voyages : une sélection de projets tournés en France et à l'étranger.</p>
         </div>
         <div v-if="articles.length" class="projects-grid container">

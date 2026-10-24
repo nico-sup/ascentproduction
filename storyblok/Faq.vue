@@ -1,6 +1,6 @@
 <template>
     <section v-editable="blok" class="container faq">
-        <h2 v-if="blok.title" v-reveal class="mb-10 max-w-[18ch]">{{ blok.title }}</h2>
+        <h2 v-if="blok.title" v-reveal="blok.title" class="mb-10 max-w-[18ch]">{{ blok.title }}</h2>
         <div class="faq-list">
             <details v-for="item in items" :key="item._uid" v-editable="item" class="faq-item">
                 <summary>{{ item.question }}</summary>

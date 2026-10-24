@@ -1,7 +1,7 @@
 <template>
     <section ref="root" v-editable="blok" class="page-hero">
         <div class="container page-hero-head">
-            <h1 v-reveal class="page-hero-title">{{ blok.title }}</h1>
+            <h1 v-reveal="blok.title" class="page-hero-title">{{ blok.title }}</h1>
             <div class="page-hero-aside">
                 <p v-if="blok.description" class="lede m-0">{{ blok.description }}</p>
                 <div v-if="link.to || blok.anchor" class="flex flex-wrap gap-3 mt-6">

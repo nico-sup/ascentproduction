@@ -1,7 +1,7 @@
 <template>
     <section v-editable="blok" class="hero">
         <div class="container hero-head">
-            <h1 v-reveal class="hero-title">{{ blok.title }}</h1>
+            <h1 v-reveal="blok.title" class="hero-title">{{ blok.title }}</h1>
             <p v-if="blok.subtitle" class="hero-sub lede">{{ blok.subtitle }}</p>
         </div>
 

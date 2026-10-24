@@ -1,7 +1,7 @@
 <template>
     <section v-editable="blok" class="container split">
         <div class="split-text">
-            <h2 v-if="blok.title" v-reveal>{{ blok.title }}</h2>
+            <h2 v-if="blok.title" v-reveal="blok.title">{{ blok.title }}</h2>
             <p v-if="blok.description" class="split-body">{{ blok.description }}</p>
         </div>
         <div v-if="blok.image?.filename" class="split-media">

@@ -19,8 +19,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     return observer
   }
 
-  const split = (el) => {
-    const text = (el.textContent || '').trim()
+  // Le texte vient de la valeur de la directive (v-reveal="blok.title") quand elle existe :
+  // ainsi une modification dans l'éditeur Storyblok met bien le titre à jour.
+  const split = (el, value) => {
+    const text = String(value ?? el.textContent ?? '').trim()
     if (!text || el.dataset.revealText === text) return
     el.dataset.revealText = text
     el.setAttribute('aria-label', text)
@@ -35,21 +37,19 @@ export default defineNuxtPlugin((nuxtApp) => {
     getSSRProps() {
       return { 'data-reveal': '' }
     },
-    mounted(el) {
+    mounted(el, binding) {
       if (reduced() || !('IntersectionObserver' in window)) {
         el.classList.add('is-split', 'is-revealed')
         return
       }
-      split(el)
+      split(el, binding.value)
       getObserver().observe(el)
     },
-    updated(el) {
+    updated(el, binding) {
       // Contenu modifié (ex. éditeur visuel Storyblok) : on redécoupe
-      if (el.classList.contains('is-revealed') && el.textContent.trim() !== el.dataset.revealText) {
-        delete el.dataset.revealText
-        split(el)
-        el.classList.add('is-revealed')
-      }
+      if (binding.value === undefined || binding.value === binding.oldValue) return
+      if (!el.classList.contains('is-split')) { el.textContent = binding.value ?? ''; return }
+      split(el, binding.value)
     },
     beforeUnmount(el) {
       observer?.unobserve(el)

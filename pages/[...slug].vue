@@ -3,11 +3,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useStoryblokApi, useStoryblokBridge } from '@storyblok/vue'
 
 const route = useRoute()
 const config = useRuntimeConfig()
+const api = useStoryblokApi()
 
 const slugParam = route.params.slug
 const slug = Array.isArray(slugParam) && slugParam.length ? slugParam.join('/') : 'home'
@@ -15,33 +16,34 @@ const slug = Array.isArray(slugParam) && slugParam.length ? slugParam.join('/') 
 // Éditeur visuel Storyblok : l'URL contient ?_storyblok=…
 const isPreview = !!route.query._storyblok
 
-let story
+const fetchStory = async (version) => {
+  try {
+    const { data } = await api.get(`cdn/stories/${slug}`, version === 'draft' ? { version, cv: Date.now() } : { version })
+    return data.story
+  } catch (e) {
+    return null
+  }
+}
+
+// Version publiée : intégrée au HTML pré-généré (Google, IA, visiteurs)
+const { data: story } = await useAsyncData(`story-${slug}`, () => fetchStory(config.public.storyblokVersion))
 
 if (isPreview && import.meta.client) {
-  // Le site est pré-généré avec la version publiée : en mode éditeur, on charge le
-  // brouillon directement dans le navigateur, puis on écoute les modifications en direct.
-  story = ref(null)
-  const api = useStoryblokApi()
-  for (const version of ['draft', 'published']) {
-    try {
-      const { data } = await api.get(`cdn/stories/${slug}`, { version, cv: Date.now() })
-      story.value = data.story
-      break
-    } catch (e) {
-      // on essaie la version suivante
-    }
-  }
-  onMounted(() => {
+  // Page jamais publiée : pas de HTML pré-généré, on charge directement le brouillon
+  if (!story.value) story.value = await fetchStory('draft')
+
+  // On remplace le contenu publié par le brouillon APRÈS l'affichage initial.
+  // (Le faire pendant l'hydratation laissait les anciennes images à l'écran.)
+  onMounted(async () => {
+    const draft = await fetchStory('draft')
+    if (draft) story.value = draft
     if (story.value?.id) {
       useStoryblokBridge(story.value.id, (updated) => { story.value = updated })
     }
   })
-} else {
-  story = await useAsyncStoryblok(slug, { version: config.public.storyblokVersion })
 }
 
 if (!story.value) {
-  // Vraie erreur 404 (avant : la page renvoyait "200 OK" avec un texte d'erreur)
   throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
 }
 
