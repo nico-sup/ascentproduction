@@ -30,6 +30,7 @@ Slogan : « Rise. Capture. Inspire. »
 - [Création de site internet](https://ascentproduction.fr/site-internet) : offre web
 - [Nos expertises](https://ascentproduction.fr/nos-expertises) : savoir-faire et types de projets
 - [Nos réalisations](https://ascentproduction.fr/projects) : portfolio de projets vidéo et photo
+- [Nos tarifs](https://ascentproduction.fr/nos-tarifs) : packs vidéo corporate, mariage, réseaux sociaux et outdoor, tarif jour tournage et montage
 - [Contact et devis](https://ascentproduction.fr/contact) : formulaire, téléphone et e-mail
 
 ## Optional

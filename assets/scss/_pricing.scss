@@ -1,0 +1,123 @@
+// Bloc Tarifs (storyblok/Pricing.vue)
+.pricing-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-4 items-stretch;
+}
+
+.pricing-card {
+    @apply relative flex flex-col rounded-xl border border-green-light-ascent bg-white p-7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: rgba(50, 50, 93, 0.15) 0 13px 27px -5px, rgba(0, 0, 0, 0.15) 0 8px 16px -8px;
+    }
+
+    &.is-highlighted {
+        @apply bg-green-ascent border-green-ascent;
+
+        // Le style global colore tous les éléments en noir : on force le blanc ici
+        &, * {
+            color: var(--white);
+        }
+
+        .pricing-features svg {
+            color: var(--green-light-ascent);
+        }
+
+        .button {
+            @apply bg-white border-white;
+            color: var(--black-ascent);
+
+            &:hover {
+                @apply bg-transparent;
+                color: var(--white);
+            }
+        }
+    }
+}
+
+.pricing-badge {
+    @apply absolute -top-3 left-7 rounded-full bg-green-light-ascent px-3 py-1 text-xs font-bold uppercase tracking-wide;
+    color: var(--white) !important;
+}
+
+.pricing-name {
+    @apply text-2xl font-bold uppercase mb-1;
+}
+
+.pricing-tagline {
+    @apply text-sm mt-0 mb-5 opacity-80;
+}
+
+.pricing-price {
+    @apply flex flex-wrap items-baseline gap-x-2 my-0 pb-5 mb-5 border-b border-grey-light-ascent;
+}
+
+.is-highlighted .pricing-price {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.pricing-prefix {
+    @apply w-full text-sm opacity-80;
+}
+
+.pricing-amount {
+    @apply font-cormorant text-4xl leading-none;
+}
+
+.pricing-suffix {
+    @apply text-sm;
+}
+
+.pricing-features {
+    @apply grid gap-3 text-sm;
+
+    li {
+        @apply flex gap-3 items-start;
+    }
+
+    svg {
+        color: var(--green-light-ascent);
+    }
+}
+
+.pricing-note {
+    @apply text-sm mt-10 max-w-3xl opacity-80;
+}
+
+/* Fenêtre de réservation */
+.booking-dialog {
+    margin: auto; // le reset global "* { margin: 0 }" décentrait la fenêtre
+    @apply rounded-xl p-0 w-[min(640px,calc(100vw-2rem))] max-h-[calc(100vh-2rem)];
+    background: var(--light-bg);
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.booking-inner {
+    @apply relative p-6 md:p-8;
+}
+
+.booking-close {
+    @apply absolute top-4 right-4 p-1;
+}
+
+.booking-form {
+    @apply grid gap-5 md:grid-cols-2;
+
+    // le style global "form" passe en 2 colonnes : on garde nos propres marges
+    .formInput {
+        @apply mb-0;
+    }
+
+    textarea {
+        min-height: 8rem;
+    }
+}
+
+/* Bloc tarifs en haut de page : laisse la place au menu fixe */
+.pricing.is-page-top {
+    @apply pt-32 md:pt-40;
+}

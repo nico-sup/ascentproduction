@@ -51,6 +51,7 @@ const menu = [
   { to: '/nos-expertises', label: 'Nos expertises' },
   { to: '/production-audiovisuelle', label: 'Production audiovisuelle' },
   { to: '/site-internet', label: 'Création de site internet' },
+  { to: '/nos-tarifs', label: 'Nos tarifs' },
   { to: '/contact', label: 'Contact' },
 ];
 

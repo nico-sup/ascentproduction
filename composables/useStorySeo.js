@@ -17,7 +17,7 @@ export function useStorySeo(storyRef) {
     // Pages "page" (liste de blocs) : on reprend le titre / texte du premier bloc qui en a un
     const blocks = Array.isArray(c.body) ? c.body : []
     const firstTitled = blocks.find(b => typeof (b.title || b.headline) === 'string' && (b.title || b.headline).trim())
-    const firstDescribed = blocks.find(b => typeof (b.description || b.subtitle) === 'string' && (b.description || b.subtitle).trim())
+    const firstDescribed = blocks.find(b => typeof (b.description || b.intro || b.subtitle) === 'string' && (b.description || b.intro || b.subtitle).trim())
     const path = isHome ? '/' : `/${fullSlug}`
     const url = `${site.url}${path}`
 
@@ -28,7 +28,7 @@ export function useStorySeo(storyRef) {
 
     const description =
       toMetaText(seo.description || c.seo_description || c.meta_description || c.description) ||
-      (!isHome && toMetaText(firstDescribed?.description || firstDescribed?.subtitle)) ||
+      (!isHome && toMetaText(firstDescribed?.description || firstDescribed?.intro || firstDescribed?.subtitle)) ||
       toMetaText(site.description)
 
     const ogSrc =

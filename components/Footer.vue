@@ -44,6 +44,7 @@
                     <li><NuxtLink class="hover:text-green-light-ascent" to="/nos-expertises">Nos expertises</NuxtLink></li>
                     <li><NuxtLink class="hover:text-green-light-ascent" to="/production-audiovisuelle">Production audiovisuelle</NuxtLink></li>
                     <li><NuxtLink class="hover:text-green-light-ascent" to="/site-internet">Création de site internet</NuxtLink></li>
+                    <li><NuxtLink class="hover:text-green-light-ascent" to="/nos-tarifs">Nos tarifs</NuxtLink></li>
                     <li><NuxtLink class="hover:text-green-light-ascent" to="/contact">Contact</NuxtLink></li>
                 </ul>
             </nav>
