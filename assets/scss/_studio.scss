@@ -141,7 +141,7 @@ section.studio {
     gap: 2px;
     height: 12px;
 
-    .is-on & { display: inline-flex; }
+    .is-on &, &.is-anim { display: inline-flex; }
 
     i {
         width: 2px;
@@ -156,6 +156,26 @@ section.studio {
 }
 
 @keyframes studio-bars { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+
+.studio-tap {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--header-h) + 1rem);
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--basalt);
+    font-size: 0.85rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+
+    @media (max-width: 767px) { top: auto; bottom: calc(1rem + 96px + 0.75rem); }
+}
 
 .studio-hint {
     margin: 0;

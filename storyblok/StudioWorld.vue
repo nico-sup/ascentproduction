@@ -37,6 +37,14 @@
             <p v-if="ready && !fallback" class="studio-hint">{{ hint }}</p>
         </div>
 
+        <!-- Invitation à activer le son si le navigateur l'a bloqué -->
+        <transition name="studio-card">
+            <button v-if="needsTap && soundOn" type="button" class="studio-tap" @click="onFirstGesture()">
+                <span class="studio-sound-bars is-anim" aria-hidden="true"><i></i><i></i><i></i></span>
+                {{ touch ? 'Touchez l’écran pour le son' : 'Cliquez pour activer le son' }}
+            </button>
+        </transition>
+
         <!-- Joystick (écrans tactiles) -->
         <div v-if="touch && ready && !fallback" ref="stick" class="studio-stick" aria-hidden="true"
             @pointerdown.stop="stickDown" @pointermove.stop="stickMove" @pointerup.stop="stickUp" @pointercancel.stop="stickUp">
@@ -213,46 +221,52 @@ function selectFromList(i) {
     if (world) world.flyTo(i)
 }
 
-// ----- Son d'ambiance (désactivé par défaut, le navigateur exige un clic) -----
-// Sur iPhone, le son doit être créé ET lancé dans le même geste (sans attente) :
-// le module est donc chargé à l'avance, et tout se fait de façon synchrone au toucher.
+// ----- Son d'ambiance : lancé automatiquement à l'arrivée -----
+// Les navigateurs n'autorisent le son qu'après un geste du visiteur. Si on arrive depuis un lien
+// du site (accueil, menu…), le son a été débloqué au clic et démarre tout seul. Sinon, il démarre
+// au premier toucher / clic / touche, avec une petite invitation à l'écran.
 let ambience = null
 let ambienceMod = null
-function preloadAmbience() {
-    import('~/lib/studio/ambience.js').then((m) => { ambienceMod = m }).catch(() => {})
-}
+const needsTap = ref(false)
+function soundPref() { try { return localStorage.getItem('studio-sound') || 'on' } catch (e) { return 'on' } }
+function savePref(on) { try { localStorage.setItem('studio-sound', on ? 'on' : 'off') } catch (e) { /* stockage indisponible */ } }
 function ensureAmbience() {
-    if (ambience || !ambienceMod) return ambience
-    ambience = ambienceMod.createAmbience()
-    ambience?.setNight(mood.value.night || 0)
+    if (!ambience && ambienceMod) { ambience = ambienceMod.getAmbience(); ambience?.setNight(mood.value.night || 0) }
     return ambience
 }
-function savePref(on) { try { localStorage.setItem('studio-sound', on ? 'on' : 'off') } catch (e) { /* stockage indisponible */ } }
+function onFirstGesture(e) {
+    if (e?.target?.closest?.('.studio-sound')) return // le bouton son gère lui-même
+    const a = ensureAmbience(); if (!a) return
+    disarmGesture()
+    needsTap.value = false
+    if (!soundOn.value) return
+    a.prime()
+    a.start()
+    if (!inView || document.hidden) a.stop()
+}
+const gestureEvents = ['touchend', 'click', 'keydown']
+function armGesture() { gestureEvents.forEach((ev) => window.addEventListener(ev, onFirstGesture, { capture: true, passive: true })) }
+function disarmGesture() { gestureEvents.forEach((ev) => window.removeEventListener(ev, onFirstGesture, { capture: true })) }
+
+async function autoStartSound() {
+    try { ambienceMod = await import('~/lib/studio/ambience.js') } catch (e) { return }
+    if (soundPref() === 'off') return
+    const a = ensureAmbience(); if (!a) return
+    soundOn.value = true
+    a.start()
+    // Laisse au navigateur le temps de répondre : si le son reste bloqué, on attend un geste
+    setTimeout(() => {
+        if (soundOn.value && a.state !== 'running') { needsTap.value = true; armGesture() }
+    }, 500)
+}
 function toggleSound() {
     const a = ensureAmbience()
     if (!a) return
     soundOn.value = !soundOn.value
-    if (soundOn.value) a.start(); else a.stop()
-    if (soundOn.value && (!inView || document.hidden)) a.stop()
+    needsTap.value = false
+    disarmGesture()
+    if (soundOn.value) { a.prime(); a.start(); if (!inView || document.hidden) a.stop() } else a.stop()
     savePref(soundOn.value)
-}
-// Si le visiteur avait laissé le son activé, on le relance à sa première interaction
-function resumeOnGesture() {
-    let pref = 'off'
-    try { pref = localStorage.getItem('studio-sound') || 'off' } catch (e) { /* stockage indisponible */ }
-    if (pref !== 'on') return
-    const go = (e) => {
-        if (e?.target?.closest?.('.studio-sound')) return // le bouton gère lui-même
-        const a = ensureAmbience(); if (!a) return
-        window.removeEventListener('pointerdown', go)
-        window.removeEventListener('keydown', go)
-        if (soundOn.value) return
-        soundOn.value = true
-        a.start()
-        if (!inView || document.hidden) a.stop()
-    }
-    window.addEventListener('pointerdown', go)
-    window.addEventListener('keydown', go)
 }
 
 function webglOk() {
@@ -293,8 +307,7 @@ onMounted(async () => {
     }, { threshold: 0.05 })
     io.observe(canvas.value)
     document.addEventListener('visibilitychange', onVisibility)
-    preloadAmbience()
-    resumeOnGesture()
+    autoStartSound()
     window.addEventListener('keydown', onKey)
     window.addEventListener('keyup', onKey)
     clockTimer = setInterval(() => { now.value = new Date() }, 30000)
@@ -324,6 +337,7 @@ onBeforeUnmount(() => {
     window.removeEventListener('keyup', onKey)
     currentVideo?.remove()
     world?.dispose(); world = null
-    ambience?.dispose(); ambience = null
+    disarmGesture()
+    ambience?.stop(); ambience = null
 })
 </script>
