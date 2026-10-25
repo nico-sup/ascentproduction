@@ -94,10 +94,12 @@ html.lenis body {
 
 .calendly-badge-widget {
     display: none;
-    left: 20px;
-    bottom: 20px;
-    right: auto;
-    z-index: 10;
+    left: 20px !important;
+    bottom: 20px !important;
+    right: auto !important;
+    width: auto !important; // le script Calendly l'étirait sur toute la largeur
+    max-width: calc(100% - 6rem);
+    z-index: 40 !important;
 }
 
 .calendly-badge-widget .calendly-badge-content {
