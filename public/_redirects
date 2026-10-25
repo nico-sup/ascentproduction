@@ -4,6 +4,7 @@
 # /ancienne-page   /nouvelle-page   301
 
 # La création de sites internet ne fait plus partie des services
+/videaste-auvergne   /videaste-clermont-ferrand   301
 /site-internet   /production-audiovisuelle   301
 
 # Éditeur visuel Storyblok : une page pas encore publiée n'existe pas en HTML.

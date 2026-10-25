@@ -51,8 +51,7 @@
                         <li><NuxtLink class="link-line" to="/studio">Studio immersif 3D</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/projects">Nos réalisations</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/nos-expertises">Nos expertises</NuxtLink></li>
-                        <li><NuxtLink class="link-line" to="/videaste-clermont-ferrand">Vidéaste à Clermont-Ferrand</NuxtLink></li>
-                        <li><NuxtLink class="link-line" to="/videaste-auvergne">Vidéaste en Auvergne</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/videaste-clermont-ferrand">Vidéaste à Clermont-Ferrand et en Auvergne</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/production-audiovisuelle">Production audiovisuelle à Clermont</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/nos-tarifs">Nos tarifs</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/contact">Contact</NuxtLink></li>
