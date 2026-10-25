@@ -48,6 +48,7 @@
                     <p class="footer-title">Navigation</p>
                     <ul class="footer-nav">
                         <li><NuxtLink class="link-line" to="/">Accueil</NuxtLink></li>
+                        <li><NuxtLink class="link-line" to="/studio">Studio immersif 3D</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/projects">Nos réalisations</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/nos-expertises">Nos expertises</NuxtLink></li>
                         <li><NuxtLink class="link-line" to="/production-audiovisuelle">Production audiovisuelle</NuxtLink></li>

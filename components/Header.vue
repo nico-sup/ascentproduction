@@ -6,7 +6,8 @@
           alt="Ascent Production, production audiovisuelle à Clermont-Ferrand" fetchpriority="high">
       </NuxtLink>
 
-      <div class="flex items-center gap-6 md:gap-10">
+      <div class="flex items-center gap-4 sm:gap-6 md:gap-10">
+        <NuxtLink to="/studio" class="header-studio" @click="closeMenu"><i aria-hidden="true"></i>Studio 3D</NuxtLink>
         <NuxtLink to="/nos-tarifs" class="hidden md:inline text-sm link-line">Tarifs</NuxtLink>
         <NuxtLink to="/contact" class="hidden md:inline text-sm link-line">Contact</NuxtLink>
         <button type="button" class="menu-toggle" @click="toggleHeaderActive"
@@ -22,7 +23,7 @@
       <div class="container menu-overlay-inner">
         <ul class="menu-links">
           <li v-for="(item, i) in menu" :key="item.to" :style="{ '--i': i }">
-            <NuxtLink :to="item.to" @click="closeMenu"><span>{{ item.label }}</span></NuxtLink>
+            <NuxtLink :to="item.to" @click="closeMenu"><span>{{ item.label }}<em v-if="item.isNew" class="menu-new">Nouveau</em></span></NuxtLink>
           </li>
         </ul>
 
@@ -49,8 +50,8 @@ let lastY = 0;
 
 const menu = [
   { to: '/', label: 'Accueil' },
+  { to: '/studio', label: 'Studio immersif 3D', isNew: true },
   { to: '/projects', label: 'Nos réalisations' },
-  { to: '/studio', label: 'Studio immersif' },
   { to: '/nos-expertises', label: 'Nos expertises' },
   { to: '/production-audiovisuelle', label: 'Production audiovisuelle' },
   { to: '/nos-tarifs', label: 'Nos tarifs' },
