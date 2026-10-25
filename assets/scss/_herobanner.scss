@@ -26,6 +26,7 @@
     height: clamp(320px, 72vh, 820px);
     overflow: hidden;
     @apply mx-5 lg:mx-10;
+    margin-bottom: clamp(3rem, 9vh, 7rem); // espace avant les blocs du projet
 
     img {
         width: 100%;

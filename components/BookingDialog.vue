@@ -1,15 +1,17 @@
 <template>
     <dialog ref="dialog" class="booking-dialog" aria-labelledby="booking-title" @close="onClose" @click="onBackdrop">
-        <div class="booking-inner">
+        <div class="booking-bar">
             <button type="button" class="booking-close" aria-label="Fermer" @click="close">
-                <svg width="24" height="24" viewBox="-0.5 0 25 25" fill="none" aria-hidden="true">
-                    <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <svg width="20" height="20" viewBox="-0.5 0 25 25" fill="none" aria-hidden="true">
+                    <path d="M3 21.32L21 3.32001M3 3.32001L21 21.32" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
             </button>
+        </div>
+        <div class="booking-inner">
 
             <template v-if="status !== 'sent'">
                 <p class="text-sm uppercase tracking-wide m-0 opacity-70">Réserver cette offre</p>
-                <h2 id="booking-title" class="text-2xl font-bold mt-1 mb-1">{{ pack?.name }}</h2>
+                <h2 id="booking-title" tabindex="-1" class="text-2xl font-bold mt-1 mb-1">{{ pack?.name }}</h2>
                 <p class="text-green-light-ascent font-bold mt-0 mb-6">{{ priceLabel }}</p>
 
                 <form class="booking-form" novalidate @submit.prevent="submit">
@@ -60,7 +62,7 @@
                         <div class="error !static mt-1" aria-live="polite">{{ errors.rgpd }}</div>
                     </div>
 
-                    <div class="md:col-span-2">
+                    <div class="booking-submit md:col-span-2">
                         <button type="submit" class="button w-full justify-center" :disabled="status === 'sending'">
                             {{ status === 'sending' ? 'Envoi en cours…' : 'Envoyer ma demande de réservation' }}
                         </button>
@@ -85,6 +87,7 @@
 import { ref, reactive, computed, nextTick } from 'vue'
 
 const site = useAppConfig().site
+const nuxtApp = useNuxtApp()
 const dialog = ref(null)
 const pack = ref(null)
 const status = ref('idle')
@@ -106,7 +109,13 @@ function open(p) {
     Object.assign(form, blank())
     Object.keys(errors).forEach(k => (errors[k] = ''))
     dialog.value?.showModal()
-    nextTick(() => document.getElementById('bk-lastname')?.focus())
+    // Page derrière bloquée pendant que la fenêtre est ouverte
+    nuxtApp.$lenis?.stop()
+    document.documentElement.classList.add('has-dialog')
+    if (dialog.value) dialog.value.scrollTop = 0
+    // Sur mobile, on n'ouvre pas le clavier d'office : il masquerait la fenêtre
+    const touch = window.matchMedia('(hover: none)').matches
+    nextTick(() => (touch ? dialog.value?.querySelector('#booking-title') : document.getElementById('bk-lastname'))?.focus({ preventScroll: true }))
 }
 
 function close() {
@@ -114,7 +123,8 @@ function close() {
 }
 
 function onClose() {
-    // Rien à faire : l'état est réinitialisé à la prochaine ouverture
+    nuxtApp.$lenis?.start()
+    document.documentElement.classList.remove('has-dialog')
 }
 
 // Clic sur le fond sombre = fermeture

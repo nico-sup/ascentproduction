@@ -171,9 +171,9 @@
 
 .to-top {
     position: fixed;
-    right: 1.5rem;
+    right: 1.25rem;
     bottom: 1.5rem;
-    z-index: 20;
+    z-index: 30; // au-dessus du badge Calendly
     @apply flex items-center justify-center w-12 h-12 rounded-full;
     background: var(--basalt);
     color: var(--paper);
