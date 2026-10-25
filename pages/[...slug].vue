@@ -43,9 +43,10 @@ if (isPreview && import.meta.client) {
   })
 }
 
-if (!story.value) {
+// En mode éditeur côté serveur, une page jamais publiée n'est pas une erreur : le brouillon est chargé dans le navigateur
+if (!story.value && !(isPreview && import.meta.server)) {
   throw createError({ statusCode: 404, statusMessage: 'Page introuvable', fatal: true })
 }
 
-useStorySeo(story)
+if (story.value) useStorySeo(story)
 </script>

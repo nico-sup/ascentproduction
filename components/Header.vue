@@ -50,6 +50,7 @@ let lastY = 0;
 const menu = [
   { to: '/', label: 'Accueil' },
   { to: '/projects', label: 'Nos réalisations' },
+  { to: '/studio', label: 'Studio immersif' },
   { to: '/nos-expertises', label: 'Nos expertises' },
   { to: '/production-audiovisuelle', label: 'Production audiovisuelle' },
   { to: '/nos-tarifs', label: 'Nos tarifs' },
