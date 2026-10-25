@@ -200,3 +200,26 @@
     background: var(--moss);
     color: var(--paper);
 }
+
+/* ----- Zone d'intervention (pages locales) ----- */
+.zones-intro {
+    max-width: 44rem;
+    margin: 0 0 2rem;
+}
+
+.zones-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        padding: 0.55rem 1rem;
+        border: 1px solid var(--stone);
+        border-radius: 999px;
+        font-size: 0.95rem;
+        background: #fff;
+    }
+}
