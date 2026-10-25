@@ -214,20 +214,26 @@ function selectFromList(i) {
 }
 
 // ----- Son d'ambiance (désactivé par défaut, le navigateur exige un clic) -----
+// Sur iPhone, le son doit être créé ET lancé dans le même geste (sans attente) :
+// le module est donc chargé à l'avance, et tout se fait de façon synchrone au toucher.
 let ambience = null
-async function ensureAmbience() {
-    if (ambience) return ambience
-    const { createAmbience } = await import('~/lib/studio/ambience.js')
-    ambience = createAmbience()
+let ambienceMod = null
+function preloadAmbience() {
+    import('~/lib/studio/ambience.js').then((m) => { ambienceMod = m }).catch(() => {})
+}
+function ensureAmbience() {
+    if (ambience || !ambienceMod) return ambience
+    ambience = ambienceMod.createAmbience()
     ambience?.setNight(mood.value.night || 0)
     return ambience
 }
 function savePref(on) { try { localStorage.setItem('studio-sound', on ? 'on' : 'off') } catch (e) { /* stockage indisponible */ } }
-async function toggleSound() {
-    const a = await ensureAmbience()
+function toggleSound() {
+    const a = ensureAmbience()
     if (!a) return
     soundOn.value = !soundOn.value
-    if (soundOn.value && inView && !document.hidden) a.start(); else a.stop()
+    if (soundOn.value) a.start(); else a.stop()
+    if (soundOn.value && (!inView || document.hidden)) a.stop()
     savePref(soundOn.value)
 }
 // Si le visiteur avait laissé le son activé, on le relance à sa première interaction
@@ -235,16 +241,18 @@ function resumeOnGesture() {
     let pref = 'off'
     try { pref = localStorage.getItem('studio-sound') || 'off' } catch (e) { /* stockage indisponible */ }
     if (pref !== 'on') return
-    const go = async () => {
+    const go = (e) => {
+        if (e?.target?.closest?.('.studio-sound')) return // le bouton gère lui-même
+        const a = ensureAmbience(); if (!a) return
         window.removeEventListener('pointerdown', go)
         window.removeEventListener('keydown', go)
         if (soundOn.value) return
-        const a = await ensureAmbience(); if (!a) return
         soundOn.value = true
-        if (inView && !document.hidden) a.start()
+        a.start()
+        if (!inView || document.hidden) a.stop()
     }
-    window.addEventListener('pointerdown', go, { once: true })
-    window.addEventListener('keydown', go, { once: true })
+    window.addEventListener('pointerdown', go)
+    window.addEventListener('keydown', go)
 }
 
 function webglOk() {
@@ -285,6 +293,7 @@ onMounted(async () => {
     }, { threshold: 0.05 })
     io.observe(canvas.value)
     document.addEventListener('visibilitychange', onVisibility)
+    preloadAmbience()
     resumeOnGesture()
     window.addEventListener('keydown', onKey)
     window.addEventListener('keyup', onKey)
