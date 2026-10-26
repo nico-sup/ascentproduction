@@ -1,5 +1,5 @@
 <template>
-    <section v-editable="blok" class="studio" :class="{ 'is-ready': ready, 'is-fallback': fallback, 'is-list': showList }">
+    <section v-editable="blok" class="studio" :class="{ 'is-ready': ready, 'is-fallback': fallback, 'is-list': showList, 'is-overview': overview }">
         <canvas ref="canvas" class="studio-canvas" aria-hidden="true"
             @pointerdown="onDown" @pointermove="onMove" @pointerup="onUp" @pointercancel="onUp"></canvas>
 
@@ -20,6 +20,7 @@
             <div class="studio-nav" role="group" aria-label="Navigation dans l'archipel">
                 <button type="button" class="studio-btn" aria-label="Île précédente" @click="go(-1)">←</button>
                 <button type="button" class="studio-btn is-text" @click="goHome">Port</button>
+                <button type="button" class="studio-btn is-text" @click="goOverview">Vue du ciel</button>
                 <button type="button" class="studio-btn" aria-label="Île suivante" @click="go(1)">→</button>
                 <button type="button" class="studio-btn is-text" :aria-expanded="showList" aria-controls="studio-list" @click="showList = !showList">
                     {{ showList ? 'Fermer' : 'Liste' }}
@@ -216,6 +217,11 @@ function go(step) {
     world.flyTo(((base + step) % n + n) % n)
 }
 function goHome() { world?.flyTo(-1) }
+function goOverview() { world?.flyOverview(); overview.value = true }
+// Vue du ciel : le titre s'efface pour laisser voir tout l'archipel ; il revient dès qu'on redescend
+const overview = ref(false)
+let overviewTimer = 0
+if (import.meta.client) overviewTimer = setInterval(() => { if (world) overview.value = !!world.nav.overview }, 400)
 function selectFromList(i) {
     showList.value = false
     if (world) world.flyTo(i)
@@ -331,7 +337,7 @@ watch(structure, () => {
 })
 
 onBeforeUnmount(() => {
-    io?.disconnect(); ro?.disconnect(); clearInterval(clockTimer)
+    io?.disconnect(); ro?.disconnect(); clearInterval(clockTimer); clearInterval(overviewTimer)
     document.removeEventListener('visibilitychange', onVisibility)
     window.removeEventListener('keydown', onKey)
     window.removeEventListener('keyup', onKey)
